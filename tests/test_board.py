@@ -80,28 +80,27 @@ async def test_state_hash():
     contract = await starknet.deploy(
         source=CONTRACT_FILE,
     )
-
-    state = [[]]
-
-    # Check the result of get_balance().
-    state_ = await contract.read_board(0, 0).call()
-    assert execution_info.result == (0,)
-
-    execution_info = await contract.read_board(0, 1).call()
-    assert execution_info.result == (0,)
-
-    execution_info = await contract.read_board(0, 2).call()
-    assert execution_info.result == (0,)
     
+    # Invoke increase_balance() twice.
+    await contract.write_board(2, 2, 1).invoke()
 
-    ## create the message hash
-    message_hash = pedersen_hash(some_unregistred_vehicle, pedersen_hash(nonce, pedersen_hash(state_hash, 0)))
+    h1 = pedersen_hash(0, 0)
+    h2 = pedersen_hash(0, h1)
+    h3 = pedersen_hash(0, h2)
+    h4 = pedersen_hash(0, h3)
+    h5 = pedersen_hash(0, h4)
+    h6 = pedersen_hash(0, h5)
+    h7 = pedersen_hash(0, h6)
+    h8 = pedersen_hash(0, h7)
+    h9 = pedersen_hash(1, h8)
+
     # Check the result of get_balance().
-    execution_info = await contract.read_board(0, 0).call()
-    assert execution_info.result == (0,)
+    execution_info = await contract.get_state_hash().call()
+    print('Hash starknet')
+    print(execution_info.result)
+    print()
+    print()
+    print(' Hash Python')
+    print(h9)
 
-    execution_info = await contract.read_board(0, 1).call()
-    assert execution_info.result == (0,)
-
-    execution_info = await contract.read_board(0, 2).call()
-    assert execution_info.result == (0,)
+    assert execution_info.result == (h9,)

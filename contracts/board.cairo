@@ -8,19 +8,19 @@ from starkware.cairo.common.cairo_builtins import HashBuiltin
 func board(i : felt, j : felt) -> (res : felt):
 end
 
-@constructor
-func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-    board.write(0, 0, 0)
-    board.write(0, 0, 0)
-    board.write(0, 0, 0)
-    board.write(1, 1, 0)
-    board.write(1, 1, 0)
-    board.write(1, 1, 0)
-    board.write(2, 2, 0)
-    board.write(2, 2, 0)
-    board.write(2, 2, 0)
-    return ()
-end
+# @constructor
+# func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
+# board.write(0, 0, 0)
+# board.write(0, 0, 0)
+# board.write(0, 0, 0)
+# board.write(1, 1, 0)
+# board.write(1, 1, 0)
+# board.write(1, 1, 0)
+# board.write(2, 2, 0)
+# board.write(2, 2, 0)
+# board.write(2, 2, 0)
+# return ()
+# end
 
 @external
 func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
@@ -44,7 +44,7 @@ end
 
 # # retrieve state hash from a board
 @view
-func getStateHash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+func get_state_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
     hash : felt
 ):
     let (board_value : felt) = board.read(0, 0)

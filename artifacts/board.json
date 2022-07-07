@@ -48,7 +48,7 @@
         },
         {
             "inputs": [],
-            "name": "getStateHash",
+            "name": "get_state_hash",
             "outputs": [
                 {
                     "name": "hash",
@@ -68,16 +68,16 @@
         ],
         "EXTERNAL": [
             {
-                "offset": "0x1a2",
-                "selector": "0x452d329bf2f7825c8472296ce71d27b1ed4a8339a9e311a719259c5b92de7f"
-            },
-            {
                 "offset": "0x102",
                 "selector": "0xfca3c50fe4a0a76a9422c68f0c53584019987127c1875f9dfd69a6b2e7e626"
             },
             {
                 "offset": "0xdd",
                 "selector": "0x279c7090cb2adef89c2e9428d05ba18f97b198a84db3f78139a0782089e9d06"
+            },
+            {
+                "offset": "0x1a2",
+                "selector": "0x33c7a6a55c782138811e22373f49c65212a3844e335ab499ec8a50f6c181aad"
             }
         ],
         "L1_HANDLER": []
@@ -537,17 +537,17 @@
                 "autogen/starknet/external/constructor/c7060df96cb0acca1380ae43bf758cab727bfdf73cb5d34a93e24a9742817fda.cairo": "let syscall_ptr = [cast([cast(fp + (-5), felt**)] + 0, felt**)]\n",
                 "autogen/starknet/external/constructor/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo": "let range_check_ptr = [cast([cast(fp + (-5), felt**)] + 2, felt*)]\n",
                 "autogen/starknet/external/constructor/ef3a79c18d46a9fa62dfdc7620278a45e5a135102b4efbfbcf08b5b08cd0430f.cairo": "let ret_value = __wrapped_func{syscall_ptr=syscall_ptr, pedersen_ptr=pedersen_ptr, range_check_ptr=range_check_ptr}()\n%{ memory[ap] = segments.add() %}        # Allocate memory for return value.\ntempvar retdata : felt*\nlet retdata_size = 0\n",
-                "autogen/starknet/external/getStateHash/424b26e79f70343cc02557f1fbd25745138efb26a3dc5c8b593ca765b73138b7.cairo": "let pedersen_ptr = [cast([cast(fp + (-5), felt**)] + 1, starkware.cairo.common.cairo_builtins.HashBuiltin**)]\n",
-                "autogen/starknet/external/getStateHash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo": "return (syscall_ptr,pedersen_ptr,range_check_ptr,retdata_size,retdata)\n",
-                "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo": "let ret_value = __wrapped_func{syscall_ptr=syscall_ptr, pedersen_ptr=pedersen_ptr, range_check_ptr=range_check_ptr}()\nlet (range_check_ptr, retdata_size, retdata) = getStateHash_encode_return(ret_value, range_check_ptr)\n",
-                "autogen/starknet/external/getStateHash/c7060df96cb0acca1380ae43bf758cab727bfdf73cb5d34a93e24a9742817fda.cairo": "let syscall_ptr = [cast([cast(fp + (-5), felt**)] + 0, felt**)]\n",
-                "autogen/starknet/external/getStateHash/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo": "let range_check_ptr = [cast([cast(fp + (-5), felt**)] + 2, felt*)]\n",
+                "autogen/starknet/external/get_state_hash/424b26e79f70343cc02557f1fbd25745138efb26a3dc5c8b593ca765b73138b7.cairo": "let pedersen_ptr = [cast([cast(fp + (-5), felt**)] + 1, starkware.cairo.common.cairo_builtins.HashBuiltin**)]\n",
+                "autogen/starknet/external/get_state_hash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo": "return (syscall_ptr,pedersen_ptr,range_check_ptr,retdata_size,retdata)\n",
+                "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo": "let ret_value = __wrapped_func{syscall_ptr=syscall_ptr, pedersen_ptr=pedersen_ptr, range_check_ptr=range_check_ptr}()\nlet (range_check_ptr, retdata_size, retdata) = get_state_hash_encode_return(ret_value, range_check_ptr)\n",
+                "autogen/starknet/external/get_state_hash/c7060df96cb0acca1380ae43bf758cab727bfdf73cb5d34a93e24a9742817fda.cairo": "let syscall_ptr = [cast([cast(fp + (-5), felt**)] + 0, felt**)]\n",
+                "autogen/starknet/external/get_state_hash/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo": "let range_check_ptr = [cast([cast(fp + (-5), felt**)] + 2, felt*)]\n",
                 "autogen/starknet/external/read_board/424b26e79f70343cc02557f1fbd25745138efb26a3dc5c8b593ca765b73138b7.cairo": "let pedersen_ptr = [cast([cast(fp + (-5), felt**)] + 1, starkware.cairo.common.cairo_builtins.HashBuiltin**)]\n",
                 "autogen/starknet/external/read_board/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo": "return (syscall_ptr,pedersen_ptr,range_check_ptr,retdata_size,retdata)\n",
                 "autogen/starknet/external/read_board/9d70a54cece1706a0bfc6070942f76d9355dd618f072aafd5778a7cad9d37e2c.cairo": "let ret_value = __wrapped_func{syscall_ptr=syscall_ptr, pedersen_ptr=pedersen_ptr, range_check_ptr=range_check_ptr}(i=__calldata_arg_i, j=__calldata_arg_j,)\nlet (range_check_ptr, retdata_size, retdata) = read_board_encode_return(ret_value, range_check_ptr)\n",
                 "autogen/starknet/external/read_board/c7060df96cb0acca1380ae43bf758cab727bfdf73cb5d34a93e24a9742817fda.cairo": "let syscall_ptr = [cast([cast(fp + (-5), felt**)] + 0, felt**)]\n",
                 "autogen/starknet/external/read_board/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo": "let range_check_ptr = [cast([cast(fp + (-5), felt**)] + 2, felt*)]\n",
-                "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo": "func getStateHash_encode_return(ret_value : (hash : felt), range_check_ptr) -> (\n        range_check_ptr, data_len : felt, data : felt*):\n    %{ memory[ap] = segments.add() %}\n    alloc_locals\n    local __return_value_ptr_start : felt*\n    let __return_value_ptr = __return_value_ptr_start\n    with range_check_ptr:\n    end\n    return (\n        range_check_ptr=range_check_ptr,\n        data_len=__return_value_ptr - __return_value_ptr_start,\n        data=__return_value_ptr_start)\nend\n",
+                "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo": "func get_state_hash_encode_return(ret_value : (hash : felt), range_check_ptr) -> (\n        range_check_ptr, data_len : felt, data : felt*):\n    %{ memory[ap] = segments.add() %}\n    alloc_locals\n    local __return_value_ptr_start : felt*\n    let __return_value_ptr = __return_value_ptr_start\n    with range_check_ptr:\n    end\n    return (\n        range_check_ptr=range_check_ptr,\n        data_len=__return_value_ptr - __return_value_ptr_start,\n        data=__return_value_ptr_start)\nend\n",
                 "autogen/starknet/external/return/read_board/ab900a7f51eb9b170e324340fa2c2a4b1a02e4f217449efa2418489282722837.cairo": "func read_board_encode_return(ret_value : (board_value : felt), range_check_ptr) -> (\n        range_check_ptr, data_len : felt, data : felt*):\n    %{ memory[ap] = segments.add() %}\n    alloc_locals\n    local __return_value_ptr_start : felt*\n    let __return_value_ptr = __return_value_ptr_start\n    with range_check_ptr:\n    end\n    return (\n        range_check_ptr=range_check_ptr,\n        data_len=__return_value_ptr - __return_value_ptr_start,\n        data=__return_value_ptr_start)\nend\n",
                 "autogen/starknet/external/write_board/424b26e79f70343cc02557f1fbd25745138efb26a3dc5c8b593ca765b73138b7.cairo": "let pedersen_ptr = [cast([cast(fp + (-5), felt**)] + 1, starkware.cairo.common.cairo_builtins.HashBuiltin**)]\n",
                 "autogen/starknet/external/write_board/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo": "return (syscall_ptr,pedersen_ptr,range_check_ptr,retdata_size,retdata)\n",
@@ -6785,12 +6785,12 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 38,
+                        "end_col": 40,
                         "end_line": 47,
                         "input_file": {
                             "filename": "contracts/board.cairo"
@@ -6819,7 +6819,7 @@
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
-                        "start_col": 19,
+                        "start_col": 21,
                         "start_line": 47
                     }
                 },
@@ -6827,12 +6827,12 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 67,
+                        "end_col": 69,
                         "end_line": 47,
                         "input_file": {
                             "filename": "contracts/board.cairo"
@@ -6861,7 +6861,7 @@
                             },
                             "While expanding the reference 'pedersen_ptr' in:"
                         ],
-                        "start_col": 40,
+                        "start_col": 42,
                         "start_line": 47
                     }
                 },
@@ -6869,12 +6869,12 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 84,
+                        "end_col": 86,
                         "end_line": 47,
                         "input_file": {
                             "filename": "contracts/board.cairo"
@@ -6903,7 +6903,7 @@
                             },
                             "While expanding the reference 'range_check_ptr' in:"
                         ],
-                        "start_col": 69,
+                        "start_col": 71,
                         "start_line": 47
                     }
                 },
@@ -6911,7 +6911,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -6929,7 +6929,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -6947,7 +6947,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -6965,7 +6965,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7007,7 +7007,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7037,7 +7037,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7055,7 +7055,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7073,7 +7073,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7127,7 +7127,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7169,7 +7169,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7223,7 +7223,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7241,7 +7241,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7259,7 +7259,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7277,7 +7277,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7319,7 +7319,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7349,7 +7349,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7379,7 +7379,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7397,7 +7397,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7451,7 +7451,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7493,7 +7493,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7547,7 +7547,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7565,7 +7565,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7583,7 +7583,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7601,7 +7601,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7643,7 +7643,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7673,7 +7673,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7703,7 +7703,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7721,7 +7721,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7775,7 +7775,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7817,7 +7817,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7871,7 +7871,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7889,7 +7889,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7907,7 +7907,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7925,7 +7925,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7967,7 +7967,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -7997,7 +7997,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8027,7 +8027,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8045,7 +8045,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8099,7 +8099,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8141,7 +8141,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8195,7 +8195,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8213,7 +8213,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8231,7 +8231,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8249,7 +8249,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8291,7 +8291,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8321,7 +8321,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8351,7 +8351,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8369,7 +8369,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8423,7 +8423,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8465,7 +8465,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8519,7 +8519,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8537,7 +8537,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8555,7 +8555,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8573,7 +8573,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8615,7 +8615,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8645,7 +8645,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8675,7 +8675,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8693,7 +8693,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8747,7 +8747,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8789,7 +8789,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8843,7 +8843,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8861,7 +8861,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8879,7 +8879,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8897,7 +8897,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8939,7 +8939,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8969,7 +8969,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -8999,7 +8999,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9017,7 +9017,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9071,7 +9071,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9113,7 +9113,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9167,7 +9167,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9185,7 +9185,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9203,7 +9203,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9221,7 +9221,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9263,7 +9263,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9293,7 +9293,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9323,7 +9323,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9341,7 +9341,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9395,7 +9395,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9437,7 +9437,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9491,7 +9491,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9509,7 +9509,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9527,7 +9527,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9545,7 +9545,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9587,7 +9587,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9617,7 +9617,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9647,7 +9647,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9665,7 +9665,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9684,7 +9684,7 @@
                                 },
                                 "parent_location": [
                                     {
-                                        "end_col": 38,
+                                        "end_col": 40,
                                         "end_line": 47,
                                         "input_file": {
                                             "filename": "contracts/board.cairo"
@@ -9701,7 +9701,7 @@
                                             },
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
-                                        "start_col": 19,
+                                        "start_col": 21,
                                         "start_line": 47
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
@@ -9719,7 +9719,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9731,7 +9731,7 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 67,
+                                "end_col": 69,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -9748,7 +9748,7 @@
                                     },
                                     "While trying to retrieve the implicit argument 'pedersen_ptr' in:"
                                 ],
-                                "start_col": 40,
+                                "start_col": 42,
                                 "start_line": 47
                             },
                             "While expanding the reference 'pedersen_ptr' in:"
@@ -9761,7 +9761,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9780,7 +9780,7 @@
                                 },
                                 "parent_location": [
                                     {
-                                        "end_col": 84,
+                                        "end_col": 86,
                                         "end_line": 47,
                                         "input_file": {
                                             "filename": "contracts/board.cairo"
@@ -9797,7 +9797,7 @@
                                             },
                                             "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                         ],
-                                        "start_col": 69,
+                                        "start_col": 71,
                                         "start_line": 47
                                     },
                                     "While expanding the reference 'range_check_ptr' in:"
@@ -9815,7 +9815,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9845,7 +9845,7 @@
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
-                        "__main__.getStateHash"
+                        "__main__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9864,7 +9864,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash_encode_return"
+                        "__wrappers__.get_state_hash_encode_return"
                     ],
                     "flow_tracking_data": null,
                     "hints": [
@@ -9873,11 +9873,11 @@
                                 "end_col": 38,
                                 "end_line": 3,
                                 "input_file": {
-                                    "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                                    "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                                 },
                                 "parent_location": [
                                     {
-                                        "end_col": 18,
+                                        "end_col": 20,
                                         "end_line": 47,
                                         "input_file": {
                                             "filename": "contracts/board.cairo"
@@ -9897,11 +9897,11 @@
                         "end_col": 17,
                         "end_line": 4,
                         "input_file": {
-                            "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                            "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -9920,7 +9920,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash_encode_return"
+                        "__wrappers__.get_state_hash_encode_return"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9951,7 +9951,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash_encode_return"
+                        "__wrappers__.get_state_hash_encode_return"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -9973,11 +9973,11 @@
                                         "end_col": 36,
                                         "end_line": 11,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                                            "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10006,19 +10006,19 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash_encode_return"
+                        "__wrappers__.get_state_hash_encode_return"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 75,
+                        "end_col": 77,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                            "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10028,11 +10028,11 @@
                                         "end_col": 40,
                                         "end_line": 10,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                                            "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10052,7 +10052,7 @@
                             },
                             "While handling return value of"
                         ],
-                        "start_col": 60,
+                        "start_col": 62,
                         "start_line": 1
                     }
                 },
@@ -10061,7 +10061,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash_encode_return"
+                        "__wrappers__.get_state_hash_encode_return"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10069,11 +10069,11 @@
                         "end_col": 63,
                         "end_line": 11,
                         "input_file": {
-                            "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                            "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10092,7 +10092,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash_encode_return"
+                        "__wrappers__.get_state_hash_encode_return"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10100,11 +10100,11 @@
                         "end_col": 35,
                         "end_line": 5,
                         "input_file": {
-                            "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                            "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10114,11 +10114,11 @@
                                         "end_col": 38,
                                         "end_line": 12,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                                            "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10147,7 +10147,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash_encode_return"
+                        "__wrappers__.get_state_hash_encode_return"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10155,11 +10155,11 @@
                         "end_col": 39,
                         "end_line": 12,
                         "input_file": {
-                            "filename": "autogen/starknet/external/return/getStateHash/eca93eab468635ec439cff9efe635ee04e389b91a8ff98a2102558dd11c2fc29.cairo"
+                            "filename": "autogen/starknet/external/return/get_state_hash/66b6f7c9542ef5d082e957fdde358886d0d296b477b6639aa13016f4e663f10d.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10178,7 +10178,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10190,7 +10190,7 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10209,7 +10209,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10217,11 +10217,11 @@
                         "end_col": 64,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/c7060df96cb0acca1380ae43bf758cab727bfdf73cb5d34a93e24a9742817fda.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/c7060df96cb0acca1380ae43bf758cab727bfdf73cb5d34a93e24a9742817fda.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 38,
+                                "end_col": 40,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10231,11 +10231,11 @@
                                         "end_col": 55,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10250,7 +10250,7 @@
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
-                                "start_col": 19,
+                                "start_col": 21,
                                 "start_line": 47
                             },
                             "While constructing the external wrapper for:"
@@ -10264,7 +10264,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10272,11 +10272,11 @@
                         "end_col": 110,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/424b26e79f70343cc02557f1fbd25745138efb26a3dc5c8b593ca765b73138b7.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/424b26e79f70343cc02557f1fbd25745138efb26a3dc5c8b593ca765b73138b7.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 67,
+                                "end_col": 69,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10286,11 +10286,11 @@
                                         "end_col": 82,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10305,7 +10305,7 @@
                                     },
                                     "While expanding the reference 'pedersen_ptr' in:"
                                 ],
-                                "start_col": 40,
+                                "start_col": 42,
                                 "start_line": 47
                             },
                             "While constructing the external wrapper for:"
@@ -10319,7 +10319,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10327,11 +10327,11 @@
                         "end_col": 67,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 84,
+                                "end_col": 86,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10341,11 +10341,11 @@
                                         "end_col": 115,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10360,7 +10360,7 @@
                                     },
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
-                                "start_col": 69,
+                                "start_col": 71,
                                 "start_line": 47
                             },
                             "While constructing the external wrapper for:"
@@ -10374,12 +10374,12 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 18,
+                        "end_col": 20,
                         "end_line": 47,
                         "input_file": {
                             "filename": "contracts/board.cairo"
@@ -10393,7 +10393,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10401,25 +10401,25 @@
                         "end_col": 115,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
                                 },
                                 "parent_location": [
                                     {
-                                        "end_col": 101,
+                                        "end_col": 103,
                                         "end_line": 2,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10429,7 +10429,7 @@
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
-                                        "start_col": 86,
+                                        "start_col": 88,
                                         "start_line": 2
                                     },
                                     "While expanding the reference 'range_check_ptr' in:"
@@ -10448,19 +10448,19 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 102,
+                        "end_col": 104,
                         "end_line": 2,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10479,7 +10479,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10487,11 +10487,11 @@
                         "end_col": 55,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10501,11 +10501,11 @@
                                         "end_col": 20,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10534,7 +10534,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10542,11 +10542,11 @@
                         "end_col": 82,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10556,11 +10556,11 @@
                                         "end_col": 33,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10589,7 +10589,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10597,11 +10597,11 @@
                         "end_col": 21,
                         "end_line": 2,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10611,11 +10611,11 @@
                                         "end_col": 49,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10644,7 +10644,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10652,11 +10652,11 @@
                         "end_col": 35,
                         "end_line": 2,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10666,11 +10666,11 @@
                                         "end_col": 62,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10699,7 +10699,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10707,11 +10707,11 @@
                         "end_col": 44,
                         "end_line": 2,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/a296529f47aa9d48e3b85a5ead0a221f757fc72767f465b44e057517a8edb225.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/60e7397081fafbda1a09d3b53e30c1c8fe2b02cd0747e0a199d4766c69789394.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10721,11 +10721,11 @@
                                         "end_col": 70,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/getStateHash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
+                                            "filename": "autogen/starknet/external/get_state_hash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 18,
+                                                "end_col": 20,
                                                 "end_line": 47,
                                                 "input_file": {
                                                     "filename": "contracts/board.cairo"
@@ -10754,7 +10754,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash"
+                        "__wrappers__.get_state_hash"
                     ],
                     "flow_tracking_data": null,
                     "hints": [],
@@ -10762,11 +10762,11 @@
                         "end_col": 71,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/getStateHash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
+                            "filename": "autogen/starknet/external/get_state_hash/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 18,
+                                "end_col": 20,
                                 "end_line": 47,
                                 "input_file": {
                                     "filename": "contracts/board.cairo"
@@ -10937,7 +10937,7 @@
                         "__main__",
                         "__main__",
                         "__wrappers__",
-                        "__wrappers__.getStateHash_encode_return"
+                        "__wrappers__.get_state_hash_encode_return"
                     ],
                     "code": "memory[ap] = segments.add()",
                     "flow_tracking_data": {
@@ -11179,21 +11179,21 @@
                 "type": "const",
                 "value": 0
             },
-            "__main__.getStateHash": {
+            "__main__.get_state_hash": {
                 "decorators": [
                     "view"
                 ],
                 "pc": 277,
                 "type": "function"
             },
-            "__main__.getStateHash.Args": {
-                "full_name": "__main__.getStateHash.Args",
+            "__main__.get_state_hash.Args": {
+                "full_name": "__main__.get_state_hash.Args",
                 "members": {},
                 "size": 0,
                 "type": "struct"
             },
-            "__main__.getStateHash.ImplicitArgs": {
-                "full_name": "__main__.getStateHash.ImplicitArgs",
+            "__main__.get_state_hash.ImplicitArgs": {
+                "full_name": "__main__.get_state_hash.ImplicitArgs",
                 "members": {
                     "pedersen_ptr": {
                         "cairo_type": "starkware.cairo.common.cairo_builtins.HashBuiltin*",
@@ -11211,11 +11211,11 @@
                 "size": 3,
                 "type": "struct"
             },
-            "__main__.getStateHash.Return": {
+            "__main__.get_state_hash.Return": {
                 "cairo_type": "(hash : felt)",
                 "type": "type_definition"
             },
-            "__main__.getStateHash.SIZEOF_LOCALS": {
+            "__main__.get_state_hash.SIZEOF_LOCALS": {
                 "type": "const",
                 "value": 0
             },
@@ -11403,44 +11403,44 @@
                 "destination": "starkware.cairo.common.memcpy.memcpy",
                 "type": "alias"
             },
-            "__wrappers__.getStateHash": {
+            "__wrappers__.get_state_hash": {
                 "decorators": [
                     "view"
                 ],
                 "pc": 418,
                 "type": "function"
             },
-            "__wrappers__.getStateHash.Args": {
-                "full_name": "__wrappers__.getStateHash.Args",
+            "__wrappers__.get_state_hash.Args": {
+                "full_name": "__wrappers__.get_state_hash.Args",
                 "members": {},
                 "size": 0,
                 "type": "struct"
             },
-            "__wrappers__.getStateHash.ImplicitArgs": {
-                "full_name": "__wrappers__.getStateHash.ImplicitArgs",
+            "__wrappers__.get_state_hash.ImplicitArgs": {
+                "full_name": "__wrappers__.get_state_hash.ImplicitArgs",
                 "members": {},
                 "size": 0,
                 "type": "struct"
             },
-            "__wrappers__.getStateHash.Return": {
+            "__wrappers__.get_state_hash.Return": {
                 "cairo_type": "(syscall_ptr : felt*, pedersen_ptr : starkware.cairo.common.cairo_builtins.HashBuiltin*, range_check_ptr : felt, size : felt, retdata : felt*)",
                 "type": "type_definition"
             },
-            "__wrappers__.getStateHash.SIZEOF_LOCALS": {
+            "__wrappers__.get_state_hash.SIZEOF_LOCALS": {
                 "type": "const",
                 "value": 0
             },
-            "__wrappers__.getStateHash.__wrapped_func": {
-                "destination": "__main__.getStateHash",
+            "__wrappers__.get_state_hash.__wrapped_func": {
+                "destination": "__main__.get_state_hash",
                 "type": "alias"
             },
-            "__wrappers__.getStateHash_encode_return": {
+            "__wrappers__.get_state_hash_encode_return": {
                 "decorators": [],
                 "pc": 409,
                 "type": "function"
             },
-            "__wrappers__.getStateHash_encode_return.Args": {
-                "full_name": "__wrappers__.getStateHash_encode_return.Args",
+            "__wrappers__.get_state_hash_encode_return.Args": {
+                "full_name": "__wrappers__.get_state_hash_encode_return.Args",
                 "members": {
                     "range_check_ptr": {
                         "cairo_type": "felt",
@@ -11454,21 +11454,21 @@
                 "size": 2,
                 "type": "struct"
             },
-            "__wrappers__.getStateHash_encode_return.ImplicitArgs": {
-                "full_name": "__wrappers__.getStateHash_encode_return.ImplicitArgs",
+            "__wrappers__.get_state_hash_encode_return.ImplicitArgs": {
+                "full_name": "__wrappers__.get_state_hash_encode_return.ImplicitArgs",
                 "members": {},
                 "size": 0,
                 "type": "struct"
             },
-            "__wrappers__.getStateHash_encode_return.Return": {
+            "__wrappers__.get_state_hash_encode_return.Return": {
                 "cairo_type": "(range_check_ptr : felt, data_len : felt, data : felt*)",
                 "type": "type_definition"
             },
-            "__wrappers__.getStateHash_encode_return.SIZEOF_LOCALS": {
+            "__wrappers__.get_state_hash_encode_return.SIZEOF_LOCALS": {
                 "type": "const",
                 "value": 1
             },
-            "__wrappers__.getStateHash_encode_return.memcpy": {
+            "__wrappers__.get_state_hash_encode_return.memcpy": {
                 "destination": "starkware.cairo.common.memcpy.memcpy",
                 "type": "alias"
             },
