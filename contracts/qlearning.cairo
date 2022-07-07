@@ -15,19 +15,6 @@ assert Board[0] = Board_row(first_column=0, second_column=0, third_column=0)
 assert Board[1] = Board_row(first_column=0, second_column=0, third_column=0)
 assert Board[2] = Board_row(first_column=0, second_column=0, third_column=0)
 
-# # you can also show the board this way:
-@storage_var
-func _my_array(i : felt) -> (res : felt):
-end
-
-@external
-func write_my_array{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> ():
-    _my_array.write(0, 123)
-    _my_array.write(1, 456)
-    _my_array.write(2, 789)
-    return ()
-end
-
 # Define a storage variable.
 @storage_var
 func balance() -> (res : felt):

@@ -1,7 +1,20 @@
 [
     {
-        "inputs": [],
-        "name": "write_my_array",
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "j",
+                "type": "felt"
+            },
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "name": "write_board",
         "outputs": [],
         "type": "function"
     },
