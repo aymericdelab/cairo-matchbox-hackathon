@@ -93,11 +93,11 @@ func winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}()
     return (1)
 end
 
-# # im here
-# @view
-# func availablePositions{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-# params
-# ) -> (availablePositions_len : felt, availablePositions : felt*):
-# let (availablePositions : felt*) = alloc()
-# return (availablePositions.size, availablePositions)
-# end
+# im here
+@view
+func availablePositions{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    params
+) -> (availablePositions_len : felt, availablePositions : felt*):
+    let (availablePositions : felt*) = alloc()
+    return (availablePositions.size, availablePositions)
+end
