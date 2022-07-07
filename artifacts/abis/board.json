@@ -1,5 +1,11 @@
 [
     {
+        "inputs": [],
+        "name": "constructor",
+        "outputs": [],
+        "type": "constructor"
+    },
+    {
         "inputs": [
             {
                 "name": "i",
@@ -33,6 +39,18 @@
         "outputs": [
             {
                 "name": "board_value",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getStateHash",
+        "outputs": [
+            {
+                "name": "hash",
                 "type": "felt"
             }
         ],
