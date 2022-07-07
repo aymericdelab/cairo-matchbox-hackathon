@@ -18,7 +18,7 @@ end
 @view
 func read_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     i : felt, j : felt
-) -> ():
+) -> (board_value : felt):
     let (board_value_at_position_i_j : felt) = board.read(i, j)
     return (board_value_at_position_i_j)
 end
