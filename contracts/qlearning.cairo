@@ -96,8 +96,12 @@ end
 # im here
 @view
 func availablePositions{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    params
+    board_len : felt, board : felt*
 ) -> (availablePositions_len : felt, availablePositions : felt*):
-    let (availablePositions : felt*) = alloc()
-    return (availablePositions.size, availablePositions)
+    let (positions : felt*) = alloc()
+    # # cannot get the array length ..
+    # # tried:
+    # # positions.element_size
+    # # positions.size
+    return (3, positions)
 end

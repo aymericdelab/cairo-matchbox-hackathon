@@ -45,5 +45,30 @@
         ],
         "stateMutability": "view",
         "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "board_len",
+                "type": "felt"
+            },
+            {
+                "name": "board",
+                "type": "felt*"
+            }
+        ],
+        "name": "availablePositions",
+        "outputs": [
+            {
+                "name": "availablePositions_len",
+                "type": "felt"
+            },
+            {
+                "name": "availablePositions",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
     }
 ]
