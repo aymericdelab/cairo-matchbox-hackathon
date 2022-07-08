@@ -14,31 +14,36 @@
             {
                 "name": "j",
                 "type": "felt"
-            },
-            {
-                "name": "value",
-                "type": "felt"
             }
         ],
-        "name": "write_board",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "i",
-                "type": "felt"
-            },
-            {
-                "name": "j",
-                "type": "felt"
-            }
-        ],
-        "name": "read_board",
+        "name": "view_board",
         "outputs": [
             {
                 "name": "board_value",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "view_game_number",
+        "outputs": [
+            {
+                "name": "num",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "view_last_winner",
+        "outputs": [
+            {
+                "name": "winner",
                 "type": "felt"
             }
         ],
@@ -55,6 +60,42 @@
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "reset_board",
+        "outputs": [
+            {
+                "name": "success",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "j",
+                "type": "felt"
+            },
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "name": "write_board",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "write_winner",
+        "outputs": [],
         "type": "function"
     }
 ]
