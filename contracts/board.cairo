@@ -68,3 +68,25 @@ func get_state_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_chec
 
     return (h9)
 end
+
+@external
+func available_positions{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i: felt, j: felt) -> (
+    positions : felt*
+):
+let (k: felt) = 0
+    let (positions : felt*) = alloc()
+if board.read(i, j) == 0
+    if board.read(0, 0)
+        assert positions[k] = 
+    end
+    return (positions)
+end
+
+## 1. check the available positions
+## 2. check the moves it can do
+## 3. get the value of each of them
+## 4. retrieve the state with the highest value
+@external
+func choose_action{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i: felt, j: felt) -> ():
+return (state)
+end

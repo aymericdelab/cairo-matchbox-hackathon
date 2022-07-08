@@ -68,39 +68,3 @@ async def test_initial_board():
     execution_info = await contract.read_board(0, 2).call()
     assert execution_info.result == (0,)
 
-
-@pytest.mark.asyncio
-async def test_state_hash():
-    """Test increase_balance method."""
-    # Create a new Starknet class that simulates the StarkNet
-    # system.
-    starknet = await Starknet.empty()
-
-    # Deploy the contract.
-    contract = await starknet.deploy(
-        source=CONTRACT_FILE,
-    )
-    
-    # Invoke increase_balance() twice.
-    await contract.write_board(2, 2, 1).invoke()
-
-    h1 = pedersen_hash(0, 0)
-    h2 = pedersen_hash(0, h1)
-    h3 = pedersen_hash(0, h2)
-    h4 = pedersen_hash(0, h3)
-    h5 = pedersen_hash(0, h4)
-    h6 = pedersen_hash(0, h5)
-    h7 = pedersen_hash(0, h6)
-    h8 = pedersen_hash(0, h7)
-    h9 = pedersen_hash(1, h8)
-
-    # Check the result of get_balance().
-    execution_info = await contract.get_state_hash().call()
-    print('Hash starknet')
-    print(execution_info.result)
-    print()
-    print()
-    print(' Hash Python')
-    print(h9)
-
-    assert execution_info.result == (h9,)
