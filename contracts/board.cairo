@@ -2,44 +2,53 @@
 
 from starkware.cairo.common.hash import hash2
 from starkware.cairo.common.cairo_builtins import HashBuiltin
+from starkware.cairo.common.math import assert_nn_le
 
 # # you can also show the board this way:
 @storage_var
 func board(i : felt, j : felt) -> (res : felt):
 end
 
-# @constructor
-# func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-# board.write(0, 0, 0)
-# board.write(0, 0, 0)
-# board.write(0, 0, 0)
-# board.write(1, 1, 0)
-# board.write(1, 1, 0)
-# board.write(1, 1, 0)
-# board.write(2, 2, 0)
-# board.write(2, 2, 0)
-# board.write(2, 2, 0)
-# return ()
-# end
+@storage_var
+func game_number() -> (num : felt):
+end
 
-@external
-func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    i : felt, j : felt, value : felt
-) -> ():
-    board.write(i, j, value)
+@storage_var
+func last_winner() -> (winner : felt):
+end
+
+@storage_var
+func state_hash_value(state_hash : felt) -> (value : felt):
+end
+
+@constructor
+func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
+    reset_board()
     return ()
 end
 
 @view
-func read_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+func view_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     i : felt, j : felt
 ) -> (board_value : felt):
     let (board_value_at_position_i_j : felt) = board.read(i, j)
     return (board_value_at_position_i_j)
 end
 
-@storage_var
-func state_hash_value(state_hash : felt) -> (value : felt):
+@view
+func view_game_number{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    num : felt
+):
+    let (num) = game_number.read()
+    return (num)
+end
+
+@view
+func view_last_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    winner : felt
+):
+    let (num) = last_winner.read()
+    return (num)
 end
 
 # # retrieve state hash from a board
@@ -69,24 +78,41 @@ func get_state_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_chec
     return (h9)
 end
 
+# TEST
 @external
-func available_positions{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i: felt, j: felt) -> (
-    positions : felt*
+func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    success : felt
 ):
-let (k: felt) = 0
-    let (positions : felt*) = alloc()
-if board.read(i, j) == 0
-    if board.read(0, 0)
-        assert positions[k] = 
-    end
-    return (positions)
+    board.write(0, 0, 0)
+    board.write(0, 1, 0)
+    board.write(0, 2, 0)
+    board.write(1, 0, 0)
+    board.write(1, 1, 0)
+    board.write(1, 2, 0)
+    board.write(2, 0, 0)
+    board.write(2, 1, 0)
+    board.write(2, 2, 0)
+    let (num) = game_number.read()
+    game_number.write(num + 1)
+    return (1)
 end
 
-## 1. check the available positions
-## 2. check the moves it can do
-## 3. get the value of each of them
-## 4. retrieve the state with the highest value
+# TEST
 @external
-func choose_action{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i: felt, j: felt) -> ():
-return (state)
+func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    i : felt, j : felt, value : felt
+) -> ():
+    assert_nn_le(i, 2)
+    assert_nn_le(j, 2)
+    assert_nn_le(value, 2)
+    board.write(i, j, value)
+    return ()
+end
+
+# TEST REMOVE ALL
+@external
+func write_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> ():
+    let (win) = last_winner.read()
+    last_winner.write(win + 1)
+    return ()
 end
