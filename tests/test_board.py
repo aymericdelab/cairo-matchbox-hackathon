@@ -30,25 +30,25 @@ async def test_write_board():
     )
 
     # Invoke increase_balance() twice.
-    await contract.write_board(0, 0, 1).invoke()
+    await contract.write_board(0, 1).invoke()
     # Invoke increase_balance() twice.
-    await contract.write_board(2, 1, 2).invoke()
+    await contract.write_board(7, 2).invoke()
     # Invoke increase_balance() twice.
-    await contract.write_board(0, 2, 0).invoke()
+    await contract.write_board(2, 0).invoke()
 
     # Check the result of get_balance().
-    execution_info = await contract.view_board(0, 0).call()
+    execution_info = await contract.view_board(0).call()
     assert execution_info.result == (1,)
 
-    execution_info = await contract.view_board(2, 1).call()
+    execution_info = await contract.view_board(7).call()
     assert execution_info.result == (2,)
 
-    execution_info = await contract.view_board(0, 2).call()
+    execution_info = await contract.view_board(2).call()
     assert execution_info.result == (0,)
 
     # Should fail
     with pytest.raises(StarkException): 
-        await contract.write_board(0, 3, 0).invoke()
+        await contract.write_board(9, 0).invoke()
 
 @pytest.mark.asyncio
 async def test_reset_board():
@@ -63,33 +63,33 @@ async def test_reset_board():
     )
 
     # Invoke increase_balance() twice.
-    await contract.write_board(0, 0, 1).invoke()
+    await contract.write_board(0, 1).invoke()
     # Invoke increase_balance() twice.
-    await contract.write_board(2, 1, 1).invoke()
+    await contract.write_board(7, 1).invoke()
     # Invoke increase_balance() twice.
-    await contract.write_board(0, 2, 1).invoke()
+    await contract.write_board(2, 1).invoke()
 
     # Reset the board
     await contract.reset_board().invoke()
 
     # Read the board 
-    val = await contract.view_board(0,0).call()
+    val = await contract.view_board(0).call()
     assert val.result == (0,)
-    val = await contract.view_board(0,1).call()
+    val = await contract.view_board(1).call()
     assert val.result == (0,)
-    val = await contract.view_board(0,2).call()
+    val = await contract.view_board(2).call()
     assert val.result == (0,)
-    val = await contract.view_board(1,0).call()
+    val = await contract.view_board(3).call()
     assert val.result == (0,)
-    val = await contract.view_board(1,1).call()
+    val = await contract.view_board(4).call()
     assert val.result == (0,)
-    val = await contract.view_board(1,2).call()
+    val = await contract.view_board(5).call()
     assert val.result == (0,)
-    val = await contract.view_board(2,0).call()
+    val = await contract.view_board(6).call()
     assert val.result == (0,)
-    val = await contract.view_board(2,1).call()
+    val = await contract.view_board(7).call()
     assert val.result == (0,)
-    val = await contract.view_board(2,2).call()
+    val = await contract.view_board(8).call()
     assert val.result == (0,)
 
 @pytest.mark.asyncio
@@ -105,13 +105,13 @@ async def test_initial_board():
     )
 
     # Check the result of get_balance().
-    execution_info = await contract.view_board(0, 0).call()
+    execution_info = await contract.view_board(0).call()
     assert execution_info.result == (0,)
 
-    execution_info = await contract.view_board(0, 1).call()
+    execution_info = await contract.view_board(1).call()
     assert execution_info.result == (0,)
 
-    execution_info = await contract.view_board(0, 2).call()
+    execution_info = await contract.view_board(2).call()
     assert execution_info.result == (0,)
 
 @pytest.mark.asyncio

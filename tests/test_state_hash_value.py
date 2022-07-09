@@ -25,9 +25,9 @@ async def test_add_state_hash_value():
     )
 
     ## write a new state
-    await contract1.write_board(2, 2, 1).invoke()
+    await contract1.write_board(8, 1).invoke()
     ## get the hash of the board
-    hash = await contract1.get_state_hash().call()
+    hash = await contract1.get_state_hash(8, 0).call()
     
 
     ## write the state_hash_value

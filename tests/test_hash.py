@@ -26,7 +26,7 @@ async def test_state_hash():
     )
     
     # Invoke increase_balance() twice.
-    await contract.write_board(2, 2, 1).invoke()
+    await contract.write_board(8, 1).invoke()
 
     h1 = pedersen_hash(0, 0)
     h2 = pedersen_hash(0, h1)
@@ -39,7 +39,7 @@ async def test_state_hash():
     h9 = pedersen_hash(1, h8)
 
     # Check the result of get_balance().
-    execution_info = await contract.get_state_hash().call()
+    execution_info = await contract.get_state_hash(8, 0).call()
     print('Hash starknet')
     print(execution_info.result)
     print()
