@@ -1,9 +1,12 @@
 %lang starknet
 
-from starkware.cairo.common.hash import hash2
 from starkware.cairo.common.cairo_builtins import HashBuiltin
-from starkware.cairo.common.math import assert_nn_le
+from starkware.cairo.common.hash import hash2
+from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem
+from starkware.cairo.common.math_cmp import is_le
+from starkware.starknet.common.syscalls import get_block_timestamp
 
+from contrats.choose_next_state import make_random_move, choose
 
 # # you can also show the board this way:
 @storage_var
@@ -74,6 +77,17 @@ func get_state_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_chec
     return get_state_hash(size-1, h)
 end
 
+@external
+func play{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, add : felt) -> ():
+    write_board(i, 1)
+    let (val) = make_random_move()
+    if val == 1:
+        return()
+    choose(0, 9, 0, add)
+    let (spot) = get_diff_boards(9)
+    write_board(spot, 2)
+end
+
 # TEST
 @external
 func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (success : felt):
@@ -120,69 +134,98 @@ func write_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_c
     return ()
 end
 
-# target: the target for the winner check (3 or 6)
 @external
-func is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(target : felt) -> (res : felt):
+func test_is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (res : felt):
+    let (a) = board.read(1)
+    let (b) = board.read(4)
+    if a == b:
+        let (c) = board.read(7)
+        if b == c:
+            return(c)
+        end
+    end
+    return(0)
+end
+
+# returns the winner if state is in winning state
+@external
+func is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (res : felt):
+    alloc_locals
     # lines
-    let (one) = board.read(0)
-    let (two) = board.read(1)
-    let (three) = board.read(2)
-    let sum = one + two + three
-    if sum == target:
-        return (1)
+    let (a) = board.read(0)
+    let (b) = board.read(1)
+    let (c) = board.read(2)
+    let (d) = board.read(3)
+    let (e) = board.read(4)
+    let (f) = board.read(5)
+    let (g) = board.read(6)
+    let (h) = board.read(7)
+    let (i) = board.read(8)
+
+    if a != 0:
+        if a == b:
+            if b == c:
+                return(a)
+            end
+        end
     end
-    let (one) = board.read(3)
-    let (two) = board.read(4)
-    let (three) = board.read(5)
-    let sum = one + two + three
-    if sum == target:
-        return (1)
+    if d != 0:
+        if d == e:
+            if e == f:
+                return(d)
+            end
+        end
     end
-    let (one) = board.read(0)
-    let (two) = board.read(3)
-    let (three) = board.read(6)
-    let sum = one + two + three
-    if sum == target:
-        return (1)
+    if g != 0:
+        if g == h:
+            if h == i:
+                return(g)
+            end
+        end
     end
 
     # columns
-    let (one) = board.read(1)
-    let (two) = board.read(4)
-    let (three) = board.read(7)
-    let sum = one + two + three
-    if sum == target:
-        return (1)
+    if a != 0:
+        if a == d:
+            if d == g:
+                return(a)
+            end
+        end
     end
-    let (one) = board.read(2)
-    let (two) = board.read(5)
-    let (three) = board.read(8)
-    let sum = one + two + three
-    if sum == target:
-        return (1)
+    if b != 0:
+        if b == e:
+            if e == h:
+                return(b)
+            end
+        end
     end
-    let (one) = board.read(6)
-    let (two) = board.read(7)
-    let (three) = board.read(8)
-    let sum = one + two + three
-    if sum == target:
-        return (1)
+    if c != 0:
+        if c == f:
+            if f == i:
+                return(c)
+            end
+        end
     end
 
     # diagonals
-    let (one) = board.read(0)
-    let (two) = board.read(4)
-    let (three) = board.read(8)
-    let sum = one + two + three
-    if sum == target:
-        return (1)
+    if a != 0:
+        if a == e:
+            if e == i:
+                return(a)
+            end
+        end
     end
-    let (one) = board.read(2)
-    let (two) = board.read(4)
-    let (three) = board.read(6)
-    let sum = one + two + three
-    if sum == target:
-        return (1)
+    if c != 0:
+        if c == e:
+            if e == g:
+                return(c)
+            end
+        end
+    end
+
+    let (moves) = num_moves.read()
+    if moves == 9:
+        return(2)
     end
     return (0)
 end
