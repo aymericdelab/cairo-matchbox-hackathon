@@ -1,12 +1,10 @@
 %lang starknet
 
-
 from starkware.cairo.common.cairo_builtins import HashBuiltin
 from starkware.cairo.common.hash import hash2
-from starkware.cairo.common.math import assert_nn_le
+from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem
 from starkware.cairo.common.math_cmp import is_le
-
-from contracts.board import view_board, write_board
+from starkware.starknet.common.syscalls import get_block_timestamp
 
 @contract_interface
 namespace IStateHashValueContract:
@@ -31,6 +29,10 @@ end
 func size_possible() -> (size : felt):
 end
 
+@storage_var
+func board(i : felt) -> (res : felt):
+end
+
 # test
 # function to have access to the board for testing
 # # view function
@@ -50,6 +52,12 @@ end
 func view_size{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (size : felt):
     let (size) = size_possible.read()
     return (size)
+end
+
+@view
+func view_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt) -> (board_value : felt):
+    let (val) = board.read(i)
+    return (val)
 end
 
 # test
@@ -75,6 +83,15 @@ end
 func write_size{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt) -> ():
     size_possible.write(size)
     return()
+end
+
+# TEST
+@external
+func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
+    assert_nn_le(i, 8)
+    assert_nn_le(value, 2)
+    board.write(i, value)
+    return ()
 end
 
 # # get the hash of the best next board, use it to compare it to the next_board
@@ -178,4 +195,30 @@ func get_diff_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
         return(val) 
     end
     return (size)
+end
+
+@external
+func make_random_move{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (rand : felt):
+    alloc_locals
+    let (block_timestamp) = get_block_timestamp()
+    let (_, local mod) = unsigned_div_rem(block_timestamp, 100)
+    let (val) = is_le(mod, 30)
+    if val == 1:
+        circle_valid_moves(mod)
+        return (1)
+    end
+    return(0)
+end
+
+@external
+func circle_valid_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(val : felt) -> ():
+    alloc_locals
+    let (_, local mod) = unsigned_div_rem(val, 8) 
+    let (b) = view_board(mod)
+    if b == 0:
+        write_board(mod, 2) 
+        return()
+    end
+    circle_valid_moves(mod+1)
+    return()
 end
