@@ -44,12 +44,7 @@ async def test_reward():
     multiplication_factor = 1000000
 
 
-    ## first party
     # size = nb moves
-    size = 6
-    ## play for both
-    ## human starts = 1
-    ## machine = 2
     await contract1.write_board(0, 1).invoke()
     await contract1.write_board(4, 2).invoke()
     await contract1.write_board(7, 1).invoke()
@@ -58,7 +53,44 @@ async def test_reward():
     await contract1.write_board(5, 2).invoke()
 
 
-    await contract1.update_state_hash_value(size-1, multiplication_factor, address).invoke()
+    await contract1.update_state_hash_value(5, multiplication_factor, address).invoke()
+
+    ## starting with size-1 (5)
+    state_hash = await contract1.get_state_moves_hash(5, 5, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
+
+    state_hash = await contract1.get_state_moves_hash(4, 4, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
+
+    state_hash = await contract1.get_state_moves_hash(3, 3, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
+
+    state_hash = await contract1.get_state_moves_hash(2, 2, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
+
+    state_hash = await contract1.get_state_moves_hash(1, 1, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
+
+    state_hash = await contract1.get_state_moves_hash(0, 0, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
+
+
+    # size = nb moves
+    await contract1.write_board(0, 1).invoke()
+    await contract1.write_board(4, 2).invoke()
+    await contract1.write_board(7, 1).invoke()
+    await contract1.write_board(3, 2).invoke()
+    await contract1.write_board(6, 1).invoke()
+    await contract1.write_board(5, 2).invoke()
+
+
+    await contract1.update_state_hash_value(5, multiplication_factor, address).invoke()
 
     ## starting with size-1 (5)
     state_hash = await contract1.get_state_moves_hash(5, 5, 0).call()
