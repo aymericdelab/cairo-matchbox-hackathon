@@ -71,21 +71,6 @@ func view_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
     return (val)
 end
 
-# # retrieve state hash from a board
-@view
-func get_state_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    size : felt, hash : felt
-) -> (hash : felt):
-    let (board_value : felt) = board.read(8 - size)
-    let (h) = hash2{hash_ptr=pedersen_ptr}(board_value, hash)
-
-    if size == 0:
-        return (h)
-    end
-
-    return get_state_hash(size - 1, h)
-end
-
 # # start with num_plays + 1
 @external
 func update_state_hash_value{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
@@ -127,14 +112,20 @@ end
 func play{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     i : felt, add : felt
 ) -> ():
+    # Human player plays
     write_board(i, 1)
+    # AI rolls the dice for a random move
     let (val) = make_random_move()
     if val == 1:
         return ()
     end
+    # If not random, AI chooses his move
     choose(0, 9, 0, add)
+    # Best move is extracted and 
     let (spot) = get_diff_boards(9)
     write_board(spot, 2)
+    
+    update_state_hash_value
 end
 
 # TEST
