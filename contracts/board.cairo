@@ -78,7 +78,6 @@ func view_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
 end
 
 # # start with size - 1 so for [0, 1, 2, 3, 4, 5] i = 5
-@external
 func update_state_hash_value{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     i : felt, reward : felt, add : felt
 ) -> ():
@@ -147,7 +146,6 @@ func play{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     return()
 end
 
-@external
 func play_ai{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(add : felt) -> ():
     alloc_locals
     # AI rolls the dice for a random move
@@ -165,6 +163,7 @@ func play_ai{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     # Update the state of the moves
     let (k) = view_num_moves() 
     write_state_moves(k, spot)
+    write_board(spot, 2)
     # Check is winning state
     let (local win) = is_winning_state() 
     let (m) = view_num_moves() 
@@ -186,7 +185,6 @@ func play_ai{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
 end
 
 # TEST
-@external
 func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
     success : felt
 ):
@@ -206,13 +204,11 @@ func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
 end
 
 # TEST REMOVE ALL
-@external
 func write_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(win : felt) -> ():
     winner.write(win)
     return ()
 end
 
-@external
 func write_num_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     moves : felt
 ) -> ():
@@ -220,7 +216,6 @@ func write_num_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     return ()
 end
 
-@external
 func write_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     i : felt, value : felt
 ) -> ():
@@ -229,7 +224,6 @@ func write_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_c
 end
 
 # returns the winner if state is in winning state
-@external
 func is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
     res : felt
 ):
@@ -315,7 +309,6 @@ end
 
 # size_minus_one is the size - 1 of the moves you want to hash
 # i start at size - 1 always
-@external
 func get_state_moves_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     size_minus_one : felt, i : felt, hash : felt
 ) -> (hash : felt):

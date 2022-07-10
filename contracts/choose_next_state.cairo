@@ -35,20 +35,16 @@ end
 
 # test
 # function to have access to the board for testing
-# # view function
-@view
 func view_possible_next_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, i : felt) -> (res : felt):
     let (res : felt) = possible_next_boards.read(k, i)
     return (res)
 end
 
-@view
 func view_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt) -> (res : felt):
     let (res : felt) = best_next_board.read(i)
     return (res)
 end
 
-@view
 func view_size{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (size : felt):
     let (size) = size_possible.read()
     return (size)
@@ -62,7 +58,6 @@ end
 
 # test
 # function to have access to the board for testing
-@external
 func write_possible_next_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}( k : felt, i : felt, value : felt) -> ():
     assert_nn_le(i, 8)
     assert_nn_le(value, 2)
@@ -71,7 +66,6 @@ func write_possible_next_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*
 end
 
 # test
-@external
 func write_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
     assert_nn_le(i, 8)
     assert_nn_le(value, 2)
@@ -79,14 +73,12 @@ func write_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, ran
     return ()
 end
 
-@external
 func write_size{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt) -> ():
     size_possible.write(size)
     return()
 end
 
 # TEST
-@external
 func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
     assert_nn_le(i, 8)
     assert_nn_le(value, 2)
@@ -95,7 +87,6 @@ func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
 end
 
 # # get the hash of the best next board, use it to compare it to the next_board
-@external
 func get_hash_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt, hash : felt) -> (hash : felt):
     let (board_value : felt) = best_next_board.read(8-size)
     let (h) = hash2{hash_ptr=pedersen_ptr}(board_value, hash)
@@ -108,7 +99,6 @@ func get_hash_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, 
 end
 
 # # get the hash of the next board, use it to compare it to the best_next_board
-@external
 func get_hash_possible_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, size : felt, hash : felt) -> ( hash : felt):
     let (board_value : felt) = possible_next_boards.read(k, 8-size)
     let (h) = hash2{hash_ptr=pedersen_ptr}(board_value, hash)
@@ -120,7 +110,6 @@ func get_hash_possible_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuilti
     return get_hash_possible_next_board(k, size-1, h)
 end
 
-@external
 func create_possible_next_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, size : felt) -> ():
     let value : felt = view_board(size) 
     write_possible_next_boards(k, size, value)
@@ -132,7 +121,6 @@ func create_possible_next_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin
     return create_possible_next_boards(k, size-1) 
 end
 
-@external
 func create_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, size : felt) -> ():
     let value : felt = view_possible_next_boards(k, size) 
     write_best_next_board(size, value)
@@ -144,7 +132,6 @@ func create_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, ra
     return create_best_next_board(k, size-1) 
 end
 
-@external
 func get_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, add : felt) -> ():
     alloc_locals
     let (local h1) = get_hash_best_next_board(8, 0)
@@ -160,7 +147,6 @@ func get_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range
 end
 
 # Start with k=0, i=9, last=0 and add=state_hash_value contract address
-@external
 func choose{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, i : felt, last : felt, add : felt) -> ():
     alloc_locals
     create_possible_next_boards(k, 8)
@@ -183,7 +169,6 @@ func choose{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k
     return ()
 end
 
-@external
 func get_diff_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt) -> (val : felt):
     if size == 0:
         return(size)
@@ -197,7 +182,6 @@ func get_diff_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     return (size)
 end
 
-@external
 func make_random_move{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (rand : felt):
     alloc_locals
     let (block_timestamp) = get_block_timestamp()
@@ -210,7 +194,6 @@ func make_random_move{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
     return(10)
 end
 
-@external
 func circle_valid_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(val : felt) -> (spot : felt):
     alloc_locals
     let (_, local mod) = unsigned_div_rem(val, 8) 
