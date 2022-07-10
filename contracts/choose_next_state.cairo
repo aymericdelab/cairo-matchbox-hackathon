@@ -204,21 +204,21 @@ func make_random_move{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
     let (_, local mod) = unsigned_div_rem(block_timestamp, 100)
     let (val) = is_le(mod, 30)
     if val == 1:
-        circle_valid_moves(mod)
-        return (1)
+        let (spot) = circle_valid_moves(mod)
+        return (spot)
     end
-    return(0)
+    return(10)
 end
 
 @external
-func circle_valid_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(val : felt) -> ():
+func circle_valid_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(val : felt) -> (spot : felt):
     alloc_locals
     let (_, local mod) = unsigned_div_rem(val, 8) 
     let (b) = view_board(mod)
     if b == 0:
         write_board(mod, 2) 
-        return()
+        return(mod)
     end
-    circle_valid_moves(mod+1)
-    return()
+    let (spot) = circle_valid_moves(mod+1)
+    return(spot)
 end

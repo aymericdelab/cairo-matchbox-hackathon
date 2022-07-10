@@ -295,15 +295,18 @@ async def test_circle_valid_moves():
         source=CONTRACT_FILE,
     ) 
 
-    await contract.circle_valid_moves(21).invoke()
+    val = await contract.circle_valid_moves(21).invoke()
+    print(val.result)
     val = await contract.view_board(5).call()
     assert val.result == (2,)
 
-    await contract.circle_valid_moves(17).invoke()
+    val = await contract.circle_valid_moves(17).invoke()
+    print(val.result)
     val = await contract.view_board(1).call()
     assert val.result == (2,)
     
-    await contract.circle_valid_moves(17).invoke()
+    val = await contract.circle_valid_moves(17).invoke()
+    print(val.result)
     val = await contract.view_board(2).call()
     assert val.result == (2,)
 
@@ -318,7 +321,7 @@ async def test_make_random_move():
     ) 
 
     val = await contract.make_random_move().invoke()
-    assert val.result == (1,)
+    assert val.result == (0,)
     val = await contract.view_board(0).call()
     assert val.result == (2,)
 
@@ -328,11 +331,11 @@ async def test_make_random_move():
     assert val.result == (2,)
 
     val = await contract.make_random_move().invoke()
-    assert val.result == (1,)
+    assert val.result == (2,)
     val = await contract.view_board(2).call()
     assert val.result == (2,)
 
     val = await contract.make_random_move().invoke()
-    assert val.result == (1,)
+    assert val.result == (3,)
     val = await contract.view_board(3).call()
     assert val.result == (2,)

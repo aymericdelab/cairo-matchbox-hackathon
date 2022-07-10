@@ -118,21 +118,71 @@ end
 func play{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     i : felt, add : felt
 ) -> ():
-    # Human player plays
+    alloc_locals
+    # Check the human can play there
+    let (v) = view_board(i)
+    assert v = 0
+    # Human player plays and update the state of the moves
     write_board(i, 1)
+    let (k) = view_num_moves() 
+    write_state_moves(k, i)
+    # Check is winning state for human
+    let (local win_human) = is_winning_state() 
+    let (m) = view_num_moves() 
+    if win_human == 0:
+        write_num_moves(m+1)
+        play_ai(add)
+        return()
+    end
+    if win_human == 3:
+        update_state_hash_value(m, 500000, add)
+        return()
+    end
+    if win_human == 1:
+        update_state_hash_value(m, 0, add)
+        write_winner(1)
+        reset_board()
+        return()
+    end
+    return()
+end
+
+@external
+func play_ai{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(add : felt) -> ():
+    alloc_locals
     # AI rolls the dice for a random move
     let (val) = make_random_move()
-    if val == 1:
+    if val != 10:
+        let (k) = view_num_moves() 
+        write_state_moves(k, val)
+        write_num_moves(k+1)
         return ()
     end
     # If not random, AI chooses his move
     choose(0, 9, 0, add)
     # Best move is extracted and copied to the correct board
     let (spot) = get_diff_boards(9)
-    write_board(spot, 2)
-    # Update the state
-    # update_state_hash_value
-    return ()
+    # Update the state of the moves
+    let (k) = view_num_moves() 
+    write_state_moves(k, spot)
+    # Check is winning state
+    let (local win) = is_winning_state() 
+    let (m) = view_num_moves() 
+    if win == 0:
+        write_num_moves(m+1)
+        return()
+    end
+    if win == 3:
+        update_state_hash_value(m, 500000, add)
+        return()
+    end
+    if win == 2:
+        update_state_hash_value(m, 1000000, add)
+        write_winner(2)
+        reset_board()
+        return()
+    end
+    return()
 end
 
 # TEST
@@ -151,14 +201,14 @@ func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
     write_board(8, 0)
     let (num) = game_number.read()
     game_number.write(num + 1)
+    write_num_moves(0)
     return (1)
 end
 
 # TEST REMOVE ALL
 @external
-func write_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> ():
-    let (win) = winner.read()
-    winner.write(win + 1)
+func write_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(win : felt) -> ():
+    winner.write(win)
     return ()
 end
 
@@ -258,23 +308,23 @@ func is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
 
     let (moves) = num_moves.read()
     if moves == 9:
-        return (2)
+        return (3)
     end
     return (0)
 end
 
-# size is the size of the moves you want to hash
-# i start at size always
+# size_minus_one is the size - 1 of the moves you want to hash
+# i start at size - 1 always
 @external
 func get_state_moves_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    size : felt, i : felt, hash : felt
+    size_minus_one : felt, i : felt, hash : felt
 ) -> (hash : felt):
-    let (state : felt) = state_moves.read(size - i)
+    let (state : felt) = state_moves.read(size_minus_one - i)
     let (h) = hash2{hash_ptr=pedersen_ptr}(state, hash)
 
     if i == 0:
         return (h)
     end
 
-    return get_state_moves_hash(size, i - 1, h)
+    return get_state_moves_hash(size_minus_one, i - 1, h)
 end
