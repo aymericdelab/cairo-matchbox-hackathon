@@ -2,7 +2,7 @@
 
 from starkware.cairo.common.hash import hash2
 from starkware.cairo.common.cairo_builtins import HashBuiltin
-from starkware.cairo.common.math import assert_nn_le
+from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem
 from starkware.cairo.common.math_cmp import is_le
 
 @contract_interface
@@ -115,9 +115,17 @@ func update_state_hash_value{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, r
     let (current_value : felt) = IStateHashValueContract.read_state_hash_value(
         contract_address=add, state_hash=state_hash
     )
-    # # learning rate = 0.2 -> 2
-    # # decay rate = 0.9 -> 9
-    tempvar reward = current_value + 2 * (9 * reward - current_value)
+    # tempvar reward = current_value + 2 * (9 * reward - current_value)
+    tempvar discounted_reward = 9 * reward
+    let (discounted_reward, _) = unsigned_div_rem(discounted_reward, 10)
+    tempvar lr_value_increment = 2 * (discounted_reward - current_value)
+    let (lr_value_increment, _) = unsigned_div_rem(lr_value_increment, 10)
+
+    tempvar reward = current_value + lr_value_increment
+
+    IStateHashValueContract.write_state_hash_value(
+        contract_address=add, state_hash=state_hash, value=reward
+    )
 
     update_state_hash_value(i - 1, reward, add)
 
