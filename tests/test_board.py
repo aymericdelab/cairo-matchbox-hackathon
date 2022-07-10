@@ -144,3 +144,85 @@ async def test_last_winner():
     await contract.write_winner().invoke()
     val = await contract.view_last_winner().call()
     assert val.result == (1,)
+
+@pytest.mark.asyncio
+async def test_winning_state():
+    """Test winning state of the contract"""
+    # Create a new Starknet class that simulates the StarkNet
+    # system.
+    starknet = await Starknet.empty()
+
+    # Deploy the contract.
+    contract = await starknet.deploy(
+        source=CONTRACT_FILE,
+    ) 
+
+    await contract.write_board(0, 1).invoke()
+    await contract.write_board(1, 1).invoke()
+    await contract.write_board(2, 1).invoke()
+
+    val = await contract.is_winning_state(3).call()
+    assert val.result == (1,)
+
+    await contract.reset_board().invoke()
+
+    await contract.write_board(1, 2).invoke()
+    await contract.write_board(4, 2).invoke()
+    await contract.write_board(7, 2).invoke()
+
+    val = await contract.is_winning_state(6).call()
+    assert val.result == (1,)
+
+    await contract.reset_board().invoke()
+
+    await contract.write_board(2, 2).invoke()
+    await contract.write_board(4, 2).invoke()
+    await contract.write_board(6, 2).invoke()
+
+    val = await contract.is_winning_state(6).call()
+#     assert val.result == (1,)
+
+@pytest.mark.asyncio
+async def test_get_state_moves_hash():
+    """Test get_state_moves_hash"""
+    # Create a new Starknet class that simulates the StarkNet
+    # system.
+    starknet = await Starknet.empty()
+
+    # Deploy the contract.
+    contract = await starknet.deploy(
+        source=CONTRACT_FILE,
+    ) 
+
+    await contract.write_state_moves(0, 3).invoke()
+    await contract.write_state_moves(1, 7).invoke()
+    await contract.write_state_moves(2, 4).invoke()
+    await contract.write_state_moves(3, 5).invoke()
+    await contract.write_state_moves(4, 2).invoke()
+    await contract.write_state_moves(5, 0).invoke()
+
+    h1 = pedersen_hash(3, 0)
+    h2 = pedersen_hash(7, h1)
+    h3 = pedersen_hash(4, h2)
+    h4 = pedersen_hash(5, h3)
+    h5 = pedersen_hash(2, h4)
+    h6 = pedersen_hash(0, h5)
+
+    val = await contract.get_state_moves_hash(5, 5, 0).call()
+    assert val.result == (h6,)
+
+    val = await contract.get_state_moves_hash(4, 4, 0).call()
+    assert val.result == (h5,)
+
+    val = await contract.get_state_moves_hash(3, 3, 0).call()
+    assert val.result == (h4,)
+
+    val = await contract.get_state_moves_hash(2, 2, 0).call()
+    assert val.result == (h3,)
+
+    val = await contract.get_state_moves_hash(1, 1, 0).call()
+    assert val.result == (h2,)
+
+    val = await contract.get_state_moves_hash(0, 0, 0).call()
+    assert val.result == (h1,)
+

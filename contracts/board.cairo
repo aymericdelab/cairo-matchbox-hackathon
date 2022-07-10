@@ -15,16 +15,19 @@ func game_number() -> (num : felt):
 end
 
 @storage_var
-func last_winner() -> (winner : felt):
+func winner() -> (winner : felt):
 end
 
 @storage_var
-func state_hash_value(state_hash : felt) -> (value : felt):
+func num_moves() -> (value : felt):
+end
+
+@storage_var
+func state_moves(i : felt) -> (value : felt):
 end
 
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-    reset_board()
     return ()
 end
 
@@ -41,9 +44,21 @@ func view_game_number{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
 end
 
 @view
-func view_last_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (winner : felt):
-    let (num) = last_winner.read()
+func view_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (winner : felt):
+    let (num) = winner.read()
     return (num)
+end
+
+@view
+func view_num_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (moves : felt):
+    let (num) = num_moves.read()
+    return (num)
+end
+
+@view
+func view_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt) -> (state : felt):
+    let (val) = state_moves.read(i)
+    return (val)
 end
 
 # # retrieve state hash from a board
@@ -88,7 +103,100 @@ end
 # TEST REMOVE ALL
 @external
 func write_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> ():
-    let (win) = last_winner.read()
-    last_winner.write(win + 1)
+    let (win) = winner.read()
+    winner.write(win + 1)
     return ()
+end
+
+@external
+func write_num_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(moves : felt) -> ():
+    num_moves.write(moves)
+    return ()
+end
+
+@external
+func write_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
+    state_moves.write(i, value)
+    return ()
+end
+
+# target: the target for the winner check (3 or 6)
+@external
+func is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(target : felt) -> (res : felt):
+    # lines
+    let (one) = board.read(0)
+    let (two) = board.read(1)
+    let (three) = board.read(2)
+    let sum = one + two + three
+    if sum == target:
+        return (1)
+    end
+    let (one) = board.read(3)
+    let (two) = board.read(4)
+    let (three) = board.read(5)
+    let sum = one + two + three
+    if sum == target:
+        return (1)
+    end
+    let (one) = board.read(0)
+    let (two) = board.read(3)
+    let (three) = board.read(6)
+    let sum = one + two + three
+    if sum == target:
+        return (1)
+    end
+
+    # columns
+    let (one) = board.read(1)
+    let (two) = board.read(4)
+    let (three) = board.read(7)
+    let sum = one + two + three
+    if sum == target:
+        return (1)
+    end
+    let (one) = board.read(2)
+    let (two) = board.read(5)
+    let (three) = board.read(8)
+    let sum = one + two + three
+    if sum == target:
+        return (1)
+    end
+    let (one) = board.read(6)
+    let (two) = board.read(7)
+    let (three) = board.read(8)
+    let sum = one + two + three
+    if sum == target:
+        return (1)
+    end
+
+    # diagonals
+    let (one) = board.read(0)
+    let (two) = board.read(4)
+    let (three) = board.read(8)
+    let sum = one + two + three
+    if sum == target:
+        return (1)
+    end
+    let (one) = board.read(2)
+    let (two) = board.read(4)
+    let (three) = board.read(6)
+    let sum = one + two + three
+    if sum == target:
+        return (1)
+    end
+    return (0)
+end
+
+# size is the size of the moves you want to hash
+# i start at size always
+@external
+func get_state_moves_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt, i : felt, hash : felt) -> (hash : felt):
+    let (state : felt) = state_moves.read(size-i)
+    let (h) = hash2{hash_ptr=pedersen_ptr}(state, hash)
+
+    if i == 0 :
+        return (h)
+    end
+
+    return get_state_moves_hash(size, i-1, h)
 end
