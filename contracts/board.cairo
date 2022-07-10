@@ -6,13 +6,14 @@ from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem
 from starkware.cairo.common.math_cmp import is_le
 from starkware.starknet.common.syscalls import get_block_timestamp
 
-from contrats.choose_next_state import make_random_move, choose
+from contracts.choose_next_state import ( 
+        make_random_move, 
+        choose, 
+        write_board, 
+        view_board
+    )
 
 # # you can also show the board this way:
-@storage_var
-func board(i : felt) -> (res : felt):
-end
-
 @storage_var
 func game_number() -> (num : felt):
 end
@@ -32,12 +33,6 @@ end
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
     return ()
-end
-
-@view
-func view_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt) -> (board_value : felt):
-    let (val) = board.read(i)
-    return (val)
 end
 
 @view
@@ -83,6 +78,7 @@ func play{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i :
     let (val) = make_random_move()
     if val == 1:
         return()
+    end
     choose(0, 9, 0, add)
     let (spot) = get_diff_boards(9)
     write_board(spot, 2)
@@ -103,15 +99,6 @@ func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
     let (num) = game_number.read()
     game_number.write(num + 1)
     return (1)
-end
-
-# TEST
-@external
-func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
-    assert_nn_le(i, 8)
-    assert_nn_le(value, 2)
-    board.write(i, value)
-    return ()
 end
 
 # TEST REMOVE ALL
