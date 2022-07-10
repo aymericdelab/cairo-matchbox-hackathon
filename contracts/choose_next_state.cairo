@@ -7,7 +7,6 @@ from starkware.cairo.common.math import assert_nn_le
 from starkware.cairo.common.math_cmp import is_le
 
 from contracts.board import view_board, write_board
-from contracts.state_hash_value import read_state_hash_value
 
 @contract_interface
 namespace IStateHashValueContract:
@@ -32,6 +31,10 @@ end
 func board_copy(i : felt) -> (res : felt):
 end
 
+@storage_var
+func size_possible() -> (size : felt):
+end
+
 # test
 # function to have access to the board for testing
 # # view function
@@ -48,9 +51,34 @@ func view_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, rang
 end
 
 @view
-func view_board_copy{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt) -> (value : felt):
-    let (value : felt) = board_copy.read(i)
-    return (value)
+func view_size{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (size : felt):
+    let (size) = size_possible.read()
+    return (size)
+end
+
+# test
+# function to have access to the board for testing
+@external
+func write_possible_next_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}( k : felt, i : felt, value : felt) -> ():
+    assert_nn_le(i, 8)
+    assert_nn_le(value, 2)
+    possible_next_boards.write(k, i, value)
+    return ()
+end
+
+# test
+@external
+func write_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
+    assert_nn_le(i, 8)
+    assert_nn_le(value, 2)
+    best_next_board.write(i, value)
+    return ()
+end
+
+@external
+func write_size{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt) -> ():
+    size_possible.write(size)
+    return()
 end
 
 # # get the hash of the best next board, use it to compare it to the next_board
@@ -79,35 +107,9 @@ func get_hash_possible_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuilti
     return get_hash_possible_next_board(k, size-1, h)
 end
 
-# test
-# function to have access to the board for testing
-@external
-func write_possible_next_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}( k : felt, i : felt, value : felt) -> ():
-    assert_nn_le(i, 8)
-    assert_nn_le(value, 2)
-    possible_next_boards.write(k, i, value)
-    return ()
-end
-
-@external
-func write_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
-    assert_nn_le(i, 8)
-    assert_nn_le(value, 2)
-    best_next_board.write(i, value)
-    return ()
-end
-
-@external
-func write_board_copy{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
-    assert_nn_le(i, 8)
-    assert_nn_le(value, 2)
-    board_copy.write(i, value)
-    return ()
-end
-
 @external
 func create_possible_next_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, size : felt) -> ():
-    let value : felt = view_board_copy(size) 
+    let value : felt = view_board(size) 
     write_possible_next_boards(k, size, value)
 
     if size == 0:
@@ -130,14 +132,6 @@ func create_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, ra
 end
 
 @external
-func test_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt) -> (res : felt):
-   alloc_locals
-    let (local h1) = get_hash_best_next_board(8, 0)
-    let (local h2) = get_hash_possible_next_board(k, 8, 0)
-    return (h1)
-end
-
-@external
 func get_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, add : felt) -> ():
     alloc_locals
     let (local h1) = get_hash_best_next_board(8, 0)
@@ -152,7 +146,26 @@ func get_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range
     return ()
 end
 
+# Start with k=0, i=9, last=0 and add=state_hash_value contract address
 @external
-func choose{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> ():
+func choose{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k : felt, i : felt, last : felt, add : felt) -> ():
+    alloc_locals
+    create_possible_next_boards(k, 8)
+
+    if i == 0:
+        return()
+    end
+    
+    let (val) = view_possible_next_boards(k, 9-i)
+    let (nn) = is_le(val, 1)
+    if nn == 0:
+        choose(k, i-1, last, add)
+        return()
+    end
+    
+    write_possible_next_boards(k, 9-i, 1)
+    choose(k+1, i-1, i, add)
+    write_size(k+1)
+    get_best_next_board(k, add)
     return ()
 end
