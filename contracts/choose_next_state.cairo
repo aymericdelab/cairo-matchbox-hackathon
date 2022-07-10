@@ -28,10 +28,6 @@ func best_next_board(i : felt) -> (res : felt):
 end
 
 @storage_var
-func board_copy(i : felt) -> (res : felt):
-end
-
-@storage_var
 func size_possible() -> (size : felt):
 end
 
@@ -168,4 +164,18 @@ func choose{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k
     write_size(k+1)
     get_best_next_board(k, add)
     return ()
+end
+
+@external
+func get_diff_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt) -> (val : felt):
+    if size == 0:
+        return(size)
+    end
+    let (best) = view_best_next_board(size)
+    let (board) = view_board(size)
+    if best == board:
+        let (val : felt) = get_diff_boards(size-1)
+        return(val) 
+    end
+    return (size)
 end
