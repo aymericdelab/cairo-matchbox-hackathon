@@ -6,7 +6,7 @@ from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem
 from starkware.cairo.common.math_cmp import is_le
 from starkware.starknet.common.syscalls import get_block_timestamp
 
-from contracts.choose_next_state import make_random_move, choose, write_board, view_board
+from contracts.choose_next_state import make_random_move, choose, write_board, view_board, get_diff_boards
 
 @contract_interface
 namespace IStateHashValueContract:
@@ -121,11 +121,12 @@ func play{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     end
     # If not random, AI chooses his move
     choose(0, 9, 0, add)
-    # Best move is extracted and 
+    # Best move is extracted and copied to the correct board
     let (spot) = get_diff_boards(9)
     write_board(spot, 2)
-    
-    update_state_hash_value
+    # Update the state 
+    # update_state_hash_value
+    return()
 end
 
 # TEST
@@ -133,15 +134,15 @@ end
 func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
     success : felt
 ):
-    board.write(0, 0)
-    board.write(1, 0)
-    board.write(2, 0)
-    board.write(3, 0)
-    board.write(4, 0)
-    board.write(5, 0)
-    board.write(6, 0)
-    board.write(7, 0)
-    board.write(8, 0)
+    write_board(0, 0)
+    write_board(1, 0)
+    write_board(2, 0)
+    write_board(3, 0)
+    write_board(4, 0)
+    write_board(5, 0)
+    write_board(6, 0)
+    write_board(7, 0)
+    write_board(8, 0)
     let (num) = game_number.read()
     game_number.write(num + 1)
     return (1)
@@ -178,15 +179,15 @@ func is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
 ):
     alloc_locals
     # lines
-    let (a) = board.read(0)
-    let (b) = board.read(1)
-    let (c) = board.read(2)
-    let (d) = board.read(3)
-    let (e) = board.read(4)
-    let (f) = board.read(5)
-    let (g) = board.read(6)
-    let (h) = board.read(7)
-    let (i) = board.read(8)
+    let (a) = view_board(0)
+    let (b) = view_board(1)
+    let (c) = view_board(2)
+    let (d) = view_board(3)
+    let (e) = view_board(4)
+    let (f) = view_board(5)
+    let (g) = view_board(6)
+    let (h) = view_board(7)
+    let (i) = view_board(8)
 
     if a != 0:
         if a == b:
