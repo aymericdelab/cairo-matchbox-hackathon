@@ -1,9 +1,53 @@
 [
     {
+        "inputs": [
+            {
+                "name": "k",
+                "type": "felt"
+            },
+            {
+                "name": "i",
+                "type": "felt"
+            }
+        ],
+        "name": "view_possible_next_boards",
+        "outputs": [
+            {
+                "name": "res",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            }
+        ],
+        "name": "view_best_next_board",
+        "outputs": [
+            {
+                "name": "res",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
-        "name": "constructor",
-        "outputs": [],
-        "type": "constructor"
+        "name": "view_size",
+        "outputs": [
+            {
+                "name": "size",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
     },
     {
         "inputs": [
@@ -21,6 +65,222 @@
         ],
         "stateMutability": "view",
         "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "k",
+                "type": "felt"
+            },
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "name": "write_possible_next_boards",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "name": "write_best_next_board",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "size",
+                "type": "felt"
+            }
+        ],
+        "name": "write_size",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "name": "write_board",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "size",
+                "type": "felt"
+            },
+            {
+                "name": "hash",
+                "type": "felt"
+            }
+        ],
+        "name": "get_hash_best_next_board",
+        "outputs": [
+            {
+                "name": "hash",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "k",
+                "type": "felt"
+            },
+            {
+                "name": "size",
+                "type": "felt"
+            },
+            {
+                "name": "hash",
+                "type": "felt"
+            }
+        ],
+        "name": "get_hash_possible_next_board",
+        "outputs": [
+            {
+                "name": "hash",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "k",
+                "type": "felt"
+            },
+            {
+                "name": "size",
+                "type": "felt"
+            }
+        ],
+        "name": "create_possible_next_boards",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "k",
+                "type": "felt"
+            },
+            {
+                "name": "size",
+                "type": "felt"
+            }
+        ],
+        "name": "create_best_next_board",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "k",
+                "type": "felt"
+            },
+            {
+                "name": "add",
+                "type": "felt"
+            }
+        ],
+        "name": "get_best_next_board",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "k",
+                "type": "felt"
+            },
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "last",
+                "type": "felt"
+            },
+            {
+                "name": "add",
+                "type": "felt"
+            }
+        ],
+        "name": "choose",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "size",
+                "type": "felt"
+            }
+        ],
+        "name": "get_diff_boards",
+        "outputs": [
+            {
+                "name": "val",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "make_random_move",
+        "outputs": [
+            {
+                "name": "rand",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "val",
+                "type": "felt"
+            }
+        ],
+        "name": "circle_valid_moves",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "constructor",
+        "outputs": [],
+        "type": "constructor"
     },
     {
         "inputs": [],
@@ -78,27 +338,6 @@
     {
         "inputs": [
             {
-                "name": "size",
-                "type": "felt"
-            },
-            {
-                "name": "hash",
-                "type": "felt"
-            }
-        ],
-        "name": "get_state_hash",
-        "outputs": [
-            {
-                "name": "hash",
-                "type": "felt"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
                 "name": "i",
                 "type": "felt"
             },
@@ -116,6 +355,21 @@
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "add",
+                "type": "felt"
+            }
+        ],
+        "name": "play",
+        "outputs": [],
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "reset_board",
         "outputs": [
@@ -124,21 +378,6 @@
                 "type": "felt"
             }
         ],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "i",
-                "type": "felt"
-            },
-            {
-                "name": "value",
-                "type": "felt"
-            }
-        ],
-        "name": "write_board",
-        "outputs": [],
         "type": "function"
     },
     {
@@ -174,12 +413,7 @@
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "name": "target",
-                "type": "felt"
-            }
-        ],
+        "inputs": [],
         "name": "is_winning_state",
         "outputs": [
             {

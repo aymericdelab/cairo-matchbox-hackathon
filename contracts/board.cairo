@@ -6,7 +6,13 @@ from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem
 from starkware.cairo.common.math_cmp import is_le
 from starkware.starknet.common.syscalls import get_block_timestamp
 
-from contracts.choose_next_state import make_random_move, choose, write_board, view_board, get_diff_boards
+from contracts.choose_next_state import (
+    make_random_move,
+    choose,
+    write_board,
+    view_board,
+    get_diff_boards,
+)
 
 @contract_interface
 namespace IStateHashValueContract:
@@ -71,7 +77,7 @@ func view_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
     return (val)
 end
 
-# # start with num_plays + 1
+# # start with size - 1 so for [0, 1, 2, 3, 4, 5] i = 5
 @external
 func update_state_hash_value{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     i : felt, reward : felt, add : felt
@@ -97,13 +103,13 @@ func update_state_hash_value{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, r
     tempvar lr_value_increment = 2 * (discounted_reward - current_value)
     let (lr_value_increment, _) = unsigned_div_rem(lr_value_increment, 10)
 
-    tempvar reward = current_value + lr_value_increment
+    tempvar new_reward = current_value + lr_value_increment
 
     IStateHashValueContract.write_state_hash_value(
-        contract_address=add, state_hash=state_hash, value=reward
+        contract_address=add, state_hash=state_hash, value=new_reward
     )
 
-    update_state_hash_value(i - 1, reward, add)
+    update_state_hash_value(i - 1, new_reward, add)
 
     return ()
 end
@@ -124,9 +130,9 @@ func play{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     # Best move is extracted and copied to the correct board
     let (spot) = get_diff_boards(9)
     write_board(spot, 2)
-    # Update the state 
+    # Update the state
     # update_state_hash_value
-    return()
+    return ()
 end
 
 # TEST

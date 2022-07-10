@@ -44,83 +44,43 @@ async def test_reward():
     multiplication_factor = 1000000
 
 
-
     ## first party
-    number_of_moves = 6
+    # size = nb moves
+    size = 6
     ## play for both
+    ## human starts = 1
+    ## machine = 2
     await contract1.write_board(0, 1).invoke()
     await contract1.write_board(4, 2).invoke()
-    await contract1.write_board(3, 1).invoke()
-    await contract1.write_board(7, 2).invoke()
+    await contract1.write_board(7, 1).invoke()
+    await contract1.write_board(3, 2).invoke()
     await contract1.write_board(6, 1).invoke()
-    await contract1.write_board(6, 2).invoke()
-
-    old_state_values = []
-    for i in reversed(range(0, number_of_moves+1)):
-        state_hash = await contract1.get_state_moves_hash(i, i, 0).call()
-        old_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
-        #old_state_values.append(old_value.result[0])
-        old_state_values.insert(0,old_value.result[0])
-
-    print('Old values ...', old_state_values)
-
-    await contract1.update_state_hash_value(number_of_moves+1, multiplication_factor, address).invoke()
-
-    for i in reversed(range(0, number_of_moves+1)):
-        old_state_value = old_state_values[i] 
-        state_hash = await contract1.get_state_moves_hash(i, i, 0).call()
-        new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
-        if i%2 == 0:
-            print('Human Player: ')
-            print(new_value.result[0])
-            assert new_value.result[0] == 0
-        else:
-            print('The AI: ')
-            print('In the contract: ', new_value.result[0])
-            print('In the test: ', new_value.result[0])
-            assert new_value.result[0] != 0
-            if i == number_of_moves:
-                new_reward = calculate_new_reward(old_state_value, multiplication_factor)
-            else:
-                new_reward = calculate_new_reward(old_state_value, new_reward)
-            assert new_reward ==  new_value.result[0]
+    await contract1.write_board(5, 2).invoke()
 
 
-    # ## second party
-    # number_of_moves = 5
-    # ## play for both
-    # await contract1.write_board(0, 2).invoke()
-    # await contract1.write_board(4, 1).invoke()
-    # await contract1.write_board(3, 2).invoke()
-    # await contract1.write_board(7, 1).invoke()
-    # await contract1.write_board(6, 2).invoke()
+    await contract1.update_state_hash_value(size-1, multiplication_factor, address).invoke()
 
-    # old_state_values = []
-    # for i in reversed(range(0, number_of_moves+1)):
-    #     state_hash = await contract1.get_state_moves_hash(i, i, 0).call()
-    #     old_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
-    #     #old_state_values.append(old_value.result[0])
-    #     old_state_values.insert(0,old_value.result[0])
+    ## starting with size-1 (5)
+    state_hash = await contract1.get_state_moves_hash(5, 5, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
 
-    # print('Old values ...', old_state_values)
+    state_hash = await contract1.get_state_moves_hash(4, 4, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
 
-    # await contract1.update_state_hash_value(number_of_moves+1, multiplication_factor, address).invoke()
+    state_hash = await contract1.get_state_moves_hash(3, 3, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
 
-    # for i in reversed(range(0, number_of_moves+1)):
-    #     old_state_value = old_state_values[i] 
-    #     state_hash = await contract1.get_state_moves_hash(i, i, 0).call()
-    #     new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
-    #     if i%2 == 0:
-    #         print('Human Player: ')
-    #         print(new_value.result[0])
-    #         assert new_value.result[0] == 0
-    #     else:
-    #         print('The AI: ')
-    #         print('In the contract: ', new_value.result[0])
-    #         print('In the test: ', new_value.result[0])
-    #         assert new_value.result[0] != 0
-    #         if i == number_of_moves:
-    #             new_reward = calculate_new_reward(old_state_value, multiplication_factor)
-    #         else:
-    #             new_reward = calculate_new_reward(old_state_value, new_reward)
-    #         assert new_reward ==  new_value.result[0]
+    state_hash = await contract1.get_state_moves_hash(2, 2, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
+
+    state_hash = await contract1.get_state_moves_hash(1, 1, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
+
+    state_hash = await contract1.get_state_moves_hash(0, 0, 0).call()
+    new_value = await contract2.read_state_hash_value(state_hash.result[0]).call()
+    print(new_value.result[0])
