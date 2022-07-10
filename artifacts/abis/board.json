@@ -10,10 +10,6 @@
             {
                 "name": "i",
                 "type": "felt"
-            },
-            {
-                "name": "j",
-                "type": "felt"
             }
         ],
         "name": "view_board",
@@ -40,7 +36,7 @@
     },
     {
         "inputs": [],
-        "name": "view_last_winner",
+        "name": "view_winner",
         "outputs": [
             {
                 "name": "winner",
@@ -52,6 +48,44 @@
     },
     {
         "inputs": [],
+        "name": "view_num_moves",
+        "outputs": [
+            {
+                "name": "moves",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            }
+        ],
+        "name": "view_state_moves",
+        "outputs": [
+            {
+                "name": "state",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "size",
+                "type": "felt"
+            },
+            {
+                "name": "hash",
+                "type": "felt"
+            }
+        ],
         "name": "get_state_hash",
         "outputs": [
             {
@@ -60,6 +94,25 @@
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "reward",
+                "type": "felt"
+            },
+            {
+                "name": "add",
+                "type": "felt"
+            }
+        ],
+        "name": "update_state_hash_value",
+        "outputs": [],
         "type": "function"
     },
     {
@@ -80,10 +133,6 @@
                 "type": "felt"
             },
             {
-                "name": "j",
-                "type": "felt"
-            },
-            {
                 "name": "value",
                 "type": "felt"
             }
@@ -96,6 +145,72 @@
         "inputs": [],
         "name": "write_winner",
         "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "moves",
+                "type": "felt"
+            }
+        ],
+        "name": "write_num_moves",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "name": "write_state_moves",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "target",
+                "type": "felt"
+            }
+        ],
+        "name": "is_winning_state",
+        "outputs": [
+            {
+                "name": "res",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "size",
+                "type": "felt"
+            },
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "hash",
+                "type": "felt"
+            }
+        ],
+        "name": "get_state_moves_hash",
+        "outputs": [
+            {
+                "name": "hash",
+                "type": "felt"
+            }
+        ],
         "type": "function"
     }
 ]

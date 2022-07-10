@@ -13,6 +13,15 @@ from contracts.choose_next_state import (
         view_board
     )
 
+@contract_interface
+namespace IStateHashValueContract:
+    func read_state_hash_value(state_hash : felt) -> (value : felt):
+    end
+
+    func write_state_hash_value(state_hash : felt, value : felt) -> ():
+    end
+end
+
 # # you can also show the board this way:
 @storage_var
 func game_number() -> (num : felt):
@@ -42,34 +51,71 @@ func view_game_number{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
 end
 
 @view
-func view_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (winner : felt):
+func view_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    winner : felt
+):
     let (num) = winner.read()
     return (num)
 end
 
 @view
-func view_num_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (moves : felt):
+func view_num_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    moves : felt
+):
     let (num) = num_moves.read()
     return (num)
 end
 
 @view
-func view_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt) -> (state : felt):
+func view_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    i : felt
+) -> (state : felt):
     let (val) = state_moves.read(i)
     return (val)
 end
 
 # # retrieve state hash from a board
 @view
-func get_state_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt, hash : felt) -> (hash : felt):
-    let (board_value : felt) = board.read(8-size)
+func get_state_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    size : felt, hash : felt
+) -> (hash : felt):
+    let (board_value : felt) = board.read(8 - size)
     let (h) = hash2{hash_ptr=pedersen_ptr}(board_value, hash)
 
-    if size == 0 :
+    if size == 0:
         return (h)
     end
 
-    return get_state_hash(size-1, h)
+    return get_state_hash(size - 1, h)
+end
+
+# # start with num_plays + 1
+@external
+func update_state_hash_value{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    i : felt, reward : felt, add : felt
+) -> ():
+    if i == 0:
+        return ()
+    end
+    tempvar val = i / 2
+    let (even : felt) = is_le(val, i)
+
+    if even == 1:
+        update_state_hash_value(i - 1, reward, add)
+        return ()
+    end
+
+    let (state_hash : felt) = get_state_moves_hash(i, i, 0)
+    let (current_value : felt) = IStateHashValueContract.read_state_hash_value(
+        contract_address=add, state_hash=state_hash
+    )
+    # # learning rate = 0.2 -> 2
+    # # decay rate = 0.9 -> 9
+    tempvar reward = current_value + 2 * (9 * reward - current_value)
+
+    update_state_hash_value(i - 1, reward, add)
+
+    return ()
 end
 
 @external
@@ -86,7 +132,9 @@ end
 
 # TEST
 @external
-func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (success : felt):
+func reset_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    success : felt
+):
     board.write(0, 0)
     board.write(1, 0)
     board.write(2, 0)
@@ -110,28 +158,19 @@ func write_winner{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_
 end
 
 @external
-func write_num_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(moves : felt) -> ():
+func write_num_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    moves : felt
+) -> ():
     num_moves.write(moves)
     return ()
 end
 
 @external
-func write_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
+func write_state_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    i : felt, value : felt
+) -> ():
     state_moves.write(i, value)
     return ()
-end
-
-@external
-func test_is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (res : felt):
-    let (a) = board.read(1)
-    let (b) = board.read(4)
-    if a == b:
-        let (c) = board.read(7)
-        if b == c:
-            return(c)
-        end
-    end
-    return(0)
 end
 
 # returns the winner if state is in winning state
@@ -220,13 +259,15 @@ end
 # size is the size of the moves you want to hash
 # i start at size always
 @external
-func get_state_moves_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt, i : felt, hash : felt) -> (hash : felt):
-    let (state : felt) = state_moves.read(size-i)
+func get_state_moves_hash{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    size : felt, i : felt, hash : felt
+) -> (hash : felt):
+    let (state : felt) = state_moves.read(size - i)
     let (h) = hash2{hash_ptr=pedersen_ptr}(state, hash)
 
-    if i == 0 :
+    if i == 0:
         return (h)
     end
 
-    return get_state_moves_hash(size, i-1, h)
+    return get_state_moves_hash(size, i - 1, h)
 end
