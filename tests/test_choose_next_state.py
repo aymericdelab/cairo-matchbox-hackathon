@@ -254,4 +254,41 @@ async def test_choose():
     val = await contract_choose.view_best_next_board(7).call()
     assert val.result == (0,)
     val = await contract_choose.view_best_next_board(8).call()
-    assert val.result == (1,) 
+#     assert val.result == (1,) 
+
+@pytest.mark.asyncio
+async def test_get_diff_boards():
+    ''' test get_diff_boards '''
+    starknet = await Starknet.empty()
+
+    # Deploy the contract.
+    contract = await starknet.deploy(
+        source=CONTRACT_FILE,
+    ) 
+
+    await contract.write_board(1, 1).invoke()
+    await contract.write_board(2, 2).invoke()
+    await contract.write_board(4, 1).invoke()
+    await contract.write_board(5, 1).invoke()
+    await contract.write_board(6, 2).invoke()
+
+    await contract.write_best_next_board(0, 2).invoke()
+    await contract.write_best_next_board(1, 1).invoke()
+    await contract.write_best_next_board(2, 2).invoke()
+    await contract.write_best_next_board(4, 1).invoke()
+    await contract.write_best_next_board(5, 1).invoke()
+    await contract.write_best_next_board(6, 2).invoke()
+
+    val = await contract.get_diff_boards(8).call()
+    assert val.result == (0,)
+
+    await contract.write_best_next_board(0, 0).invoke()
+    await contract.write_best_next_board(8, 1).invoke()
+    val = await contract.get_diff_boards(8).call()
+    assert val.result == (8,)
+
+
+    await contract.write_best_next_board(8, 0).invoke()
+    await contract.write_best_next_board(1, 0).invoke()
+    val = await contract.get_diff_boards(8).call()
+    assert val.result == (1,)
