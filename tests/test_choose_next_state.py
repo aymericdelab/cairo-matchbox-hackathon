@@ -149,18 +149,6 @@ async def test_get_best_next_board():
     await contract_state_hash.write_state_hash_value(hbnb, 10).invoke()
     await contract_state_hash.write_state_hash_value(hpnb, 12).invoke()
 
-    val = await contract_state_hash.read_state_hash_value(hbnb).call()
-    assert val.result == (10, )
-    val = await contract_state_hash.read_state_hash_value(hpnb).call()
-    assert val.result == (12, )
-
-    val = await contract_choose.get_hash_best_next_board(8, 0).call()
-    assert val.result == (hbnb, )
-    val = await contract_choose.get_hash_possible_next_board(4, 8, 0).call()
-    assert val.result == (hpnb, )
-
-    val = await contract_choose.test_best_next_board(4).call()
-
     await contract_choose.get_best_next_board(4, contract_state_hash.contract_address).invoke()
 
     val = await contract_choose.view_best_next_board(0).call()
@@ -181,3 +169,89 @@ async def test_get_best_next_board():
     assert val.result == (0,)
     val = await contract_choose.view_best_next_board(8).call()
     assert val.result == (0,)
+
+@pytest.mark.asyncio
+async def test_choose():
+    ''' test choose '''
+    starknet = await Starknet.empty()
+
+    # Deploy the contract.
+    contract_choose = await starknet.deploy(
+        source=CONTRACT_FILE,
+    ) 
+    contract_state_hash = await starknet.deploy(
+        source="contracts/state_hash_value.cairo",
+    ) 
+
+
+    await contract_choose.write_board(0, 1).invoke()
+    await contract_choose.write_board(2, 2).invoke()
+    await contract_choose.write_board(4, 1).invoke()
+    await contract_choose.write_board(5, 1).invoke()
+    await contract_choose.write_board(6, 2).invoke()
+
+    h1 = pedersen_hash(1, 0)
+    h2 = pedersen_hash(1, h1)
+    h3 = pedersen_hash(2, h2)
+    h4 = pedersen_hash(0, h3)
+    h5 = pedersen_hash(1, h4)
+    h6 = pedersen_hash(1, h5)
+    h7 = pedersen_hash(2, h6)
+    h8 = pedersen_hash(0, h7)
+    s1 = pedersen_hash(0, h8)
+
+    h1 = pedersen_hash(1, 0)
+    h2 = pedersen_hash(0, h1)
+    h3 = pedersen_hash(2, h2)
+    h4 = pedersen_hash(1, h3)
+    h5 = pedersen_hash(1, h4)
+    h6 = pedersen_hash(1, h5)
+    h7 = pedersen_hash(2, h6)
+    h8 = pedersen_hash(0, h7)
+    s2 = pedersen_hash(0, h8)
+
+    h1 = pedersen_hash(1, 0)
+    h2 = pedersen_hash(0, h1)
+    h3 = pedersen_hash(2, h2)
+    h4 = pedersen_hash(0, h3)
+    h5 = pedersen_hash(1, h4)
+    h6 = pedersen_hash(1, h5)
+    h7 = pedersen_hash(2, h6)
+    h8 = pedersen_hash(1, h7)
+    s3 = pedersen_hash(0, h8)
+
+    h1 = pedersen_hash(1, 0)
+    h2 = pedersen_hash(0, h1)
+    h3 = pedersen_hash(2, h2)
+    h4 = pedersen_hash(0, h3)
+    h5 = pedersen_hash(1, h4)
+    h6 = pedersen_hash(1, h5)
+    h7 = pedersen_hash(2, h6)
+    h8 = pedersen_hash(0, h7)
+    s4 = pedersen_hash(1, h8)
+
+    await contract_state_hash.write_state_hash_value(s1, 10).invoke()
+    await contract_state_hash.write_state_hash_value(s2, 30).invoke()
+    await contract_state_hash.write_state_hash_value(s3, 15).invoke()
+    await contract_state_hash.write_state_hash_value(s4, 31).invoke()
+
+    await contract_choose.choose(0, 9, 0, contract_state_hash.contract_address).invoke()
+    
+    val = await contract_choose.view_best_next_board(0).call()
+    assert val.result == (1,)
+    val = await contract_choose.view_best_next_board(1).call()
+    assert val.result == (0,)
+    val = await contract_choose.view_best_next_board(2).call()
+    assert val.result == (2,)
+    val = await contract_choose.view_best_next_board(3).call()
+    assert val.result == (0,)
+    val = await contract_choose.view_best_next_board(4).call()
+    assert val.result == (1,)
+    val = await contract_choose.view_best_next_board(5).call()
+    assert val.result == (1,)
+    val = await contract_choose.view_best_next_board(6).call()
+    assert val.result == (2,)
+    val = await contract_choose.view_best_next_board(7).call()
+    assert val.result == (0,)
+    val = await contract_choose.view_best_next_board(8).call()
+    assert val.result == (1,) 
