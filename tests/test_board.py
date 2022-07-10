@@ -161,7 +161,7 @@ async def test_winning_state():
     await contract.write_board(1, 1).invoke()
     await contract.write_board(2, 1).invoke()
 
-    val = await contract.is_winning_state(3).call()
+    val = await contract.is_winning_state().call()
     assert val.result == (1,)
 
     await contract.reset_board().invoke()
@@ -170,17 +170,26 @@ async def test_winning_state():
     await contract.write_board(4, 2).invoke()
     await contract.write_board(7, 2).invoke()
 
-    val = await contract.is_winning_state(6).call()
-    assert val.result == (1,)
+    val = await contract.is_winning_state().call()
+    assert val.result == (2,)
+
+    await contract.reset_board().invoke()
+
+    await contract.write_board(0, 2).invoke()
+    await contract.write_board(3, 2).invoke()
+    await contract.write_board(6, 2).invoke()
+
+    val = await contract.is_winning_state().call()
+    assert val.result == (2,)
 
     await contract.reset_board().invoke()
 
     await contract.write_board(2, 2).invoke()
-    await contract.write_board(4, 2).invoke()
-    await contract.write_board(6, 2).invoke()
+    await contract.write_board(5, 2).invoke()
+    await contract.write_board(8, 2).invoke()
 
-    val = await contract.is_winning_state(6).call()
-#     assert val.result == (1,)
+    val = await contract.is_winning_state().call()
+    assert val.result == (2,)
 
 @pytest.mark.asyncio
 async def test_get_state_moves_hash():

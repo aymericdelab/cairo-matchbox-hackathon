@@ -28,18 +28,10 @@ async def test_copy_board():
         source=CONTRACT_FILE,
     )
 
-    ## check if the import works
-    await contract.write_board_copy(6, 1).invoke()
-    execution_info = await contract.view_board_copy(6).call()
-    assert execution_info.result == (1,)
-
-    ## check if the import works
-    await contract.write_board_copy(5, 2).invoke()
-    execution_info = await contract.view_board_copy(5).call()
-    assert execution_info.result == (2,)
-
     ## create a copy of the board in another storage_var
     copy_number = 2
+    await contract.write_board(6, 1).invoke()
+    await contract.write_board(5, 2).invoke()
     await contract.create_possible_next_boards(copy_number, 8).invoke()
 
     board_copy_value = await contract.view_possible_next_boards(copy_number, 6).call()
@@ -292,3 +284,55 @@ async def test_get_diff_boards():
     await contract.write_best_next_board(1, 0).invoke()
     val = await contract.get_diff_boards(8).call()
     assert val.result == (1,)
+
+@pytest.mark.asyncio
+async def test_circle_valid_moves():
+    ''' test circle_valid_moves '''
+    starknet = await Starknet.empty()
+
+    # Deploy the contract.
+    contract = await starknet.deploy(
+        source=CONTRACT_FILE,
+    ) 
+
+    await contract.circle_valid_moves(21).invoke()
+    val = await contract.view_board(5).call()
+    assert val.result == (2,)
+
+    await contract.circle_valid_moves(17).invoke()
+    val = await contract.view_board(1).call()
+    assert val.result == (2,)
+    
+    await contract.circle_valid_moves(17).invoke()
+    val = await contract.view_board(2).call()
+    assert val.result == (2,)
+
+@pytest.mark.asyncio
+async def test_make_random_move():
+    ''' test make_random_move '''
+    starknet = await Starknet.empty()
+
+    # Deploy the contract.
+    contract = await starknet.deploy(
+        source=CONTRACT_FILE,
+    ) 
+
+    val = await contract.make_random_move().invoke()
+    assert val.result == (1,)
+    val = await contract.view_board(0).call()
+    assert val.result == (2,)
+
+    val = await contract.make_random_move().invoke()
+    assert val.result == (1,)
+    val = await contract.view_board(1).call()
+    assert val.result == (2,)
+
+    val = await contract.make_random_move().invoke()
+    assert val.result == (1,)
+    val = await contract.view_board(2).call()
+    assert val.result == (2,)
+
+    val = await contract.make_random_move().invoke()
+    assert val.result == (1,)
+    val = await contract.view_board(3).call()
+    assert val.result == (2,)
