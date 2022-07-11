@@ -7,6 +7,15 @@ Additionally, the following files can be useful:
 - Presentation: video presentation of the project.
 - slides.key: slide presentation of the project.
 
+## Installation
+In order to run the project, the following commands need to be applied:
+```
+cd website
+npm install
+npm start
+```
+This should start http://localhost:3000/ where you will be able to interact with the cairo contracts.
+
 ## Introduction
 On Starknet, several great builders have already shown that you could use an agent trained offchain to make onchain predictions.
 This can already open the gates to very interesting applications to enrich onchain games.

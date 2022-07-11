@@ -1,0 +1,93 @@
+[
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            }
+        ],
+        "name": "view_board",
+        "outputs": [
+            {
+                "name": "board_value",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "constructor",
+        "outputs": [],
+        "type": "constructor"
+    },
+    {
+        "inputs": [],
+        "name": "view_game_number",
+        "outputs": [
+            {
+                "name": "num",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "view_winner",
+        "outputs": [
+            {
+                "name": "winner",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "view_num_moves",
+        "outputs": [
+            {
+                "name": "moves",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            }
+        ],
+        "name": "view_state_moves",
+        "outputs": [
+            {
+                "name": "state",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "i",
+                "type": "felt"
+            },
+            {
+                "name": "add",
+                "type": "felt"
+            }
+        ],
+        "name": "play",
+        "outputs": [],
+        "type": "function"
+    }
+]
