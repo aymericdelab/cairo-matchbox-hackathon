@@ -4,7 +4,7 @@ The first AI agent trained on-chain. This project contain the following folders:
 - tests: the folder containing all the tests for the cairo contracts.
 
 Additionally, the following files can be useful: 
-- Presentation: video presentation of the project.
+- Presentation: video presentation of the project (can also be found at https://www.youtube.com/watch?v=YDqGjpLu0DM)
 - slides.key: slide presentation of the project.
 
 ## Installation
