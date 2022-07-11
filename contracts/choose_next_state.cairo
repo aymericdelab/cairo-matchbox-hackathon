@@ -79,11 +79,25 @@ func write_size{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_pt
 end
 
 # TEST
+@external
 func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
     assert_nn_le(i, 8)
     assert_nn_le(value, 2)
     board.write(i, value)
     return ()
+end
+
+func reset_best_next_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> ():
+    write_best_next_board(0, 0)
+    write_best_next_board(1, 0)
+    write_best_next_board(2, 0)
+    write_best_next_board(3, 0)
+    write_best_next_board(4, 0)
+    write_best_next_board(5, 0)
+    write_best_next_board(6, 0)
+    write_best_next_board(7, 0)
+    write_best_next_board(8, 0)
+    return()
 end
 
 # # get the hash of the best next board, use it to compare it to the next_board
@@ -156,13 +170,12 @@ func choose{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(k
     end
     
     let (val) = view_possible_next_boards(k, 9-i)
-    let (nn) = is_le(val, 1)
-    if nn == 0:
+    if val != 0:
         choose(k, i-1, last, add)
         return()
     end
     
-    write_possible_next_boards(k, 9-i, 1)
+    write_possible_next_boards(k, 9-i, 2)
     choose(k+1, i-1, i, add)
     write_size(k+1)
     get_best_next_board(k, add)
@@ -182,6 +195,14 @@ func get_diff_boards{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     return (size)
 end
 
+func do_random{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (spot : felt):
+    alloc_locals
+    let (block_timestamp) = get_block_timestamp()
+    let (_, local mod) = unsigned_div_rem(block_timestamp, 100)
+    let (s) = circle_valid_moves(mod)
+    return(s) 
+end
+
 func make_random_move{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (rand : felt):
     alloc_locals
     let (block_timestamp) = get_block_timestamp()
@@ -196,7 +217,7 @@ end
 
 func circle_valid_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(val : felt) -> (spot : felt):
     alloc_locals
-    let (_, local mod) = unsigned_div_rem(val, 8) 
+    let (_, local mod) = unsigned_div_rem(val, 9) 
     let (b) = view_board(mod)
     if b == 0:
         write_board(mod, 2) 
@@ -204,4 +225,17 @@ func circle_valid_moves{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_
     end
     let (spot) = circle_valid_moves(mod+1)
     return(spot)
+end
+
+# give size as 9 for a 3*3 game
+func check_empty{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(size : felt) -> (empty : felt):
+    if size == 0:
+        return (1)
+    end
+    let (b) = view_best_next_board(size-1)
+    if b == 0:
+        let (re) = check_empty(size-1)
+        return (re)      
+    end
+    return (0)
 end

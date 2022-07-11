@@ -339,3 +339,120 @@ async def test_make_random_move():
     assert val.result == (3,)
     val = await contract.view_board(3).call()
     assert val.result == (2,)
+
+@pytest.mark.asyncio
+async def test_make_random_move():
+    ''' test make_random_move '''
+    starknet = await Starknet.empty()
+
+    # Deploy the contract.
+    contract = await starknet.deploy(
+        source=CONTRACT_FILE,
+    ) 
+
+    val = await contract.check_empty(9).call()
+    assert val.result == (1,)
+
+    await contract.write_best_next_board(0, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(0, 0).invoke()
+
+    await contract.write_best_next_board(1, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(1, 0).invoke()
+
+    await contract.write_best_next_board(2, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(2, 0).invoke()
+
+    await contract.write_best_next_board(3, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(3, 0).invoke()
+
+    await contract.write_best_next_board(4, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(4, 0).invoke()
+
+    await contract.write_best_next_board(5, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(5, 0).invoke()
+
+    await contract.write_best_next_board(6, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(6, 0).invoke()
+
+    await contract.write_best_next_board(7, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(7, 0).invoke()
+
+    await contract.write_best_next_board(8, 1).invoke()
+    val = await contract.check_empty(9).call()
+    assert val.result == (0,)
+    await contract.write_best_next_board(8, 0).invoke()
+
+    val = await contract.check_empty(9).call()
+    assert val.result == (1,)
+
+@pytest.mark.asyncio
+async def test_make_random_move():
+    ''' test make_random_move '''
+    starknet = await Starknet.empty()
+
+    # Deploy the contract.
+    contract = await starknet.deploy(
+        source=CONTRACT_FILE,
+    ) 
+
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])
+    spot = await contract.do_random().invoke()
+    val = await contract.view_board(spot.result[0]).call()
+    assert val.result == (2,)
+
+    print(spot.result[0])

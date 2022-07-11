@@ -12,6 +12,9 @@ from contracts.choose_next_state import (
     write_board,
     view_board,
     get_diff_boards,
+    reset_best_next_board,
+    check_empty,
+    do_random
 )
 
 @contract_interface
@@ -126,15 +129,16 @@ func play{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     let (k) = view_num_moves() 
     write_state_moves(k, i)
     # Check is winning state for human
-    let (local win_human) = is_winning_state() 
     let (m) = view_num_moves() 
+    write_num_moves(m+1)
+    let (local win_human) = is_winning_state() 
     if win_human == 0:
-        write_num_moves(m+1)
         play_ai(add)
         return()
     end
     if win_human == 3:
         update_state_hash_value(m, 500000, add)
+        reset_board()
         return()
     end
     if win_human == 1:
@@ -149,15 +153,27 @@ end
 func play_ai{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(add : felt) -> ():
     alloc_locals
     # AI rolls the dice for a random move
+    reset_best_next_board()
     let (val) = make_random_move()
     if val != 10:
+        # Check is winning state
         let (k) = view_num_moves() 
         write_state_moves(k, val)
-        write_num_moves(k+1)
+        win_ai(add)
         return ()
     end
     # If not random, AI chooses his move
     choose(0, 9, 0, add)
+    # If no changes to best next board, make a random move
+    let (empty) = check_empty(9)
+    if empty == 1:
+        let (val) = do_random()
+        # Check is winning state
+        let (k) = view_num_moves() 
+        write_state_moves(k, val)
+        win_ai(add)
+        return()
+    end
     # Best move is extracted and copied to the correct board
     let (spot) = get_diff_boards(9)
     # Update the state of the moves
@@ -165,6 +181,12 @@ func play_ai{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     write_state_moves(k, spot)
     write_board(spot, 2)
     # Check is winning state
+    win_ai(add)
+    return()
+end
+
+func win_ai{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(add : felt) -> ():
+    alloc_locals
     let (local win) = is_winning_state() 
     let (m) = view_num_moves() 
     if win == 0:
@@ -173,6 +195,7 @@ func play_ai{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     end
     if win == 3:
         update_state_hash_value(m, 500000, add)
+        reset_board()
         return()
     end
     if win == 2:
@@ -300,7 +323,7 @@ func is_winning_state{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_ch
         end
     end
 
-    let (moves) = num_moves.read()
+    let (moves) = view_num_moves()
     if moves == 9:
         return (3)
     end
