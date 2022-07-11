@@ -2631,12 +2631,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 46,
-                                        "end_line": 12,
+                                        "end_line": 10,
                                         "input_file": {
                                             "filename": "contracts/state_hash_value.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 12
+                                        "start_line": 10
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
@@ -2673,12 +2673,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 46,
-                                        "end_line": 12,
+                                        "end_line": 10,
                                         "input_file": {
                                             "filename": "contracts/state_hash_value.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 12
+                                        "start_line": 10
                                     },
                                     "While trying to retrieve the implicit argument 'pedersen_ptr' in:"
                                 ],
@@ -2715,12 +2715,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 46,
-                                        "end_line": 12,
+                                        "end_line": 10,
                                         "input_file": {
                                             "filename": "contracts/state_hash_value.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 12
+                                        "start_line": 10
                                     },
                                     "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                 ],
@@ -2742,25 +2742,25 @@
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 22,
-                        "end_line": 10,
+                        "end_col": 113,
+                        "end_line": 9,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 12,
+                                "end_line": 10,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 28,
-                                "start_line": 12
+                                "start_line": 10
                             },
                             "While expanding the reference 'state_hash' in:"
                         ],
-                        "start_col": 5,
-                        "start_line": 10
+                        "start_col": 96,
+                        "start_line": 9
                     }
                 },
                 "120": {
@@ -2772,25 +2772,25 @@
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 29,
-                        "end_line": 10,
+                        "end_col": 127,
+                        "end_line": 9,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 45,
-                                "end_line": 12,
+                                "end_line": 10,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 40,
-                                "start_line": 12
+                                "start_line": 10
                             },
                             "While expanding the reference 'value' in:"
                         ],
-                        "start_col": 24,
-                        "start_line": 10
+                        "start_col": 115,
+                        "start_line": 9
                     }
                 },
                 "121": {
@@ -2803,12 +2803,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 46,
-                        "end_line": 12,
+                        "end_line": 10,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 12
+                        "start_line": 10
                     }
                 },
                 "123": {
@@ -2821,12 +2821,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 14,
-                        "end_line": 13,
+                        "end_line": 11,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 13
+                        "start_line": 11
                     }
                 },
                 "124": {
@@ -2846,8 +2846,8 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 29,
-                                "end_line": 10,
+                                "end_col": 127,
+                                "end_line": 9,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -2899,8 +2899,8 @@
                                     },
                                     "While expanding the reference '__calldata_ptr' in:"
                                 ],
-                                "start_col": 24,
-                                "start_line": 10
+                                "start_col": 115,
+                                "start_line": 9
                             },
                             "While handling calldata argument 'value'"
                         ],
@@ -3121,8 +3121,8 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 22,
-                                "end_line": 10,
+                                "end_col": 113,
+                                "end_line": 9,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -3150,8 +3150,8 @@
                                     },
                                     "While expanding the reference '__calldata_arg_state_hash' in:"
                                 ],
-                                "start_col": 5,
-                                "start_line": 10
+                                "start_col": 96,
+                                "start_line": 9
                             },
                             "While handling calldata argument 'state_hash'"
                         ],
@@ -3176,8 +3176,8 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 29,
-                                "end_line": 10,
+                                "end_col": 127,
+                                "end_line": 9,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -3205,8 +3205,8 @@
                                     },
                                     "While expanding the reference '__calldata_arg_value' in:"
                                 ],
-                                "start_col": 24,
-                                "start_line": 10
+                                "start_col": 115,
+                                "start_line": 9
                             },
                             "While handling calldata argument 'value'"
                         ],
@@ -3605,7 +3605,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 47,
-                        "end_line": 17,
+                        "end_line": 15,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
@@ -3619,12 +3619,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 57,
-                                        "end_line": 20,
+                                        "end_line": 16,
                                         "input_file": {
                                             "filename": "contracts/state_hash_value.cairo"
                                         },
                                         "start_col": 24,
-                                        "start_line": 20
+                                        "start_line": 16
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
@@ -3634,7 +3634,7 @@
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 28,
-                        "start_line": 17
+                        "start_line": 15
                     }
                 },
                 "144": {
@@ -3647,7 +3647,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 76,
-                        "end_line": 17,
+                        "end_line": 15,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
@@ -3661,12 +3661,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 57,
-                                        "end_line": 20,
+                                        "end_line": 16,
                                         "input_file": {
                                             "filename": "contracts/state_hash_value.cairo"
                                         },
                                         "start_col": 24,
-                                        "start_line": 20
+                                        "start_line": 16
                                     },
                                     "While trying to retrieve the implicit argument 'pedersen_ptr' in:"
                                 ],
@@ -3676,7 +3676,7 @@
                             "While expanding the reference 'pedersen_ptr' in:"
                         ],
                         "start_col": 49,
-                        "start_line": 17
+                        "start_line": 15
                     }
                 },
                 "145": {
@@ -3689,7 +3689,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 93,
-                        "end_line": 17,
+                        "end_line": 15,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
@@ -3703,12 +3703,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 57,
-                                        "end_line": 20,
+                                        "end_line": 16,
                                         "input_file": {
                                             "filename": "contracts/state_hash_value.cairo"
                                         },
                                         "start_col": 24,
-                                        "start_line": 20
+                                        "start_line": 16
                                     },
                                     "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                 ],
@@ -3718,7 +3718,7 @@
                             "While expanding the reference 'range_check_ptr' in:"
                         ],
                         "start_col": 78,
-                        "start_line": 17
+                        "start_line": 15
                     }
                 },
                 "146": {
@@ -3730,25 +3730,25 @@
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 22,
-                        "end_line": 18,
+                        "end_col": 112,
+                        "end_line": 15,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 56,
-                                "end_line": 20,
+                                "end_line": 16,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 46,
-                                "start_line": 20
+                                "start_line": 16
                             },
                             "While expanding the reference 'state_hash' in:"
                         ],
-                        "start_col": 5,
-                        "start_line": 18
+                        "start_col": 95,
+                        "start_line": 15
                     }
                 },
                 "147": {
@@ -3761,12 +3761,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 57,
-                        "end_line": 20,
+                        "end_line": 16,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
                         "start_col": 24,
-                        "start_line": 20
+                        "start_line": 16
                     }
                 },
                 "149": {
@@ -3779,12 +3779,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 17,
-                        "end_line": 21,
+                        "end_line": 17,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 21
+                        "start_line": 17
                     }
                 },
                 "150": {
@@ -3806,12 +3806,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 27,
-                                        "end_line": 17,
+                                        "end_line": 15,
                                         "input_file": {
                                             "filename": "contracts/state_hash_value.cairo"
                                         },
                                         "start_col": 6,
-                                        "start_line": 17
+                                        "start_line": 15
                                     },
                                     "While handling return value of"
                                 ],
@@ -3830,12 +3830,12 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While handling return value of"
                         ],
@@ -3860,13 +3860,13 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 19,
-                                "end_line": 19,
+                                "end_col": 130,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
-                                "start_col": 7,
-                                "start_line": 19
+                                "start_col": 118,
+                                "start_line": 15
                             },
                             "While handling return value 'value'"
                         ],
@@ -3891,8 +3891,8 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 19,
-                                "end_line": 19,
+                                "end_col": 130,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -3906,12 +3906,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While handling return value of"
                                         ],
@@ -3920,8 +3920,8 @@
                                     },
                                     "While expanding the reference '__return_value_ptr' in:"
                                 ],
-                                "start_col": 7,
-                                "start_line": 19
+                                "start_col": 118,
+                                "start_line": 15
                             },
                             "While handling return value 'value'"
                         ],
@@ -3947,7 +3947,7 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -3961,12 +3961,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While handling return value of"
                                         ],
@@ -3976,7 +3976,7 @@
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While handling return value of"
                         ],
@@ -4002,12 +4002,12 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While handling return value of"
                         ],
@@ -4033,7 +4033,7 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4047,12 +4047,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While handling return value of"
                                         ],
@@ -4062,7 +4062,7 @@
                                     "While expanding the reference '__return_value_ptr_start' in:"
                                 ],
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While handling return value of"
                         ],
@@ -4088,12 +4088,12 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While handling return value of"
                         ],
@@ -4118,8 +4118,8 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 22,
-                                "end_line": 18,
+                                "end_col": 112,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4133,7 +4133,7 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
@@ -4147,12 +4147,12 @@
                                                         "parent_location": [
                                                             {
                                                                 "end_col": 27,
-                                                                "end_line": 17,
+                                                                "end_line": 15,
                                                                 "input_file": {
                                                                     "filename": "contracts/state_hash_value.cairo"
                                                                 },
                                                                 "start_col": 6,
-                                                                "start_line": 17
+                                                                "start_line": 15
                                                             },
                                                             "While handling calldata of"
                                                         ],
@@ -4162,7 +4162,7 @@
                                                     "While expanding the reference '__calldata_actual_size' in:"
                                                 ],
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While handling calldata of"
                                         ],
@@ -4171,8 +4171,8 @@
                                     },
                                     "While expanding the reference '__calldata_ptr' in:"
                                 ],
-                                "start_col": 5,
-                                "start_line": 18
+                                "start_col": 95,
+                                "start_line": 15
                             },
                             "While handling calldata argument 'state_hash'"
                         ],
@@ -4198,12 +4198,12 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While handling calldata of"
                         ],
@@ -4229,7 +4229,7 @@
                         "parent_location": [
                             {
                                 "end_col": 47,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4243,12 +4243,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4258,7 +4258,7 @@
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
                                 "start_col": 28,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4284,7 +4284,7 @@
                         "parent_location": [
                             {
                                 "end_col": 76,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4298,12 +4298,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4313,7 +4313,7 @@
                                     "While expanding the reference 'pedersen_ptr' in:"
                                 ],
                                 "start_col": 49,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4339,7 +4339,7 @@
                         "parent_location": [
                             {
                                 "end_col": 93,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4353,12 +4353,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4368,7 +4368,7 @@
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
                                 "start_col": 78,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4393,8 +4393,8 @@
                         },
                         "parent_location": [
                             {
-                                "end_col": 22,
-                                "end_line": 18,
+                                "end_col": 112,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4408,12 +4408,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4422,8 +4422,8 @@
                                     },
                                     "While expanding the reference '__calldata_arg_state_hash' in:"
                                 ],
-                                "start_col": 5,
-                                "start_line": 18
+                                "start_col": 95,
+                                "start_line": 15
                             },
                             "While handling calldata argument 'state_hash'"
                         ],
@@ -4442,12 +4442,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 27,
-                        "end_line": 17,
+                        "end_line": 15,
                         "input_file": {
                             "filename": "contracts/state_hash_value.cairo"
                         },
                         "start_col": 6,
-                        "start_line": 17
+                        "start_line": 15
                     }
                 },
                 "168": {
@@ -4468,7 +4468,7 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4482,12 +4482,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4497,7 +4497,7 @@
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4523,12 +4523,12 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4554,7 +4554,7 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4568,12 +4568,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4583,7 +4583,7 @@
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4609,7 +4609,7 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4623,12 +4623,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4638,7 +4638,7 @@
                                     "While expanding the reference 'pedersen_ptr' in:"
                                 ],
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4664,7 +4664,7 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4678,12 +4678,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4693,7 +4693,7 @@
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4719,7 +4719,7 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4733,12 +4733,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4748,7 +4748,7 @@
                                     "While expanding the reference 'retdata_size' in:"
                                 ],
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4774,7 +4774,7 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
@@ -4788,12 +4788,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 27,
-                                                "end_line": 17,
+                                                "end_line": 15,
                                                 "input_file": {
                                                     "filename": "contracts/state_hash_value.cairo"
                                                 },
                                                 "start_col": 6,
-                                                "start_line": 17
+                                                "start_line": 15
                                             },
                                             "While constructing the external wrapper for:"
                                         ],
@@ -4803,7 +4803,7 @@
                                     "While expanding the reference 'retdata' in:"
                                 ],
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],
@@ -4829,12 +4829,12 @@
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 17,
+                                "end_line": 15,
                                 "input_file": {
                                     "filename": "contracts/state_hash_value.cairo"
                                 },
                                 "start_col": 6,
-                                "start_line": 17
+                                "start_line": 15
                             },
                             "While constructing the external wrapper for:"
                         ],

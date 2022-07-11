@@ -79,7 +79,6 @@ func write_size{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_pt
 end
 
 # TEST
-@external
 func write_board{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(i : felt, value : felt) -> ():
     assert_nn_le(i, 8)
     assert_nn_le(value, 2)
