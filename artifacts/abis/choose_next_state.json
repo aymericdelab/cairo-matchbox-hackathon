@@ -1,18 +1,8 @@
 [
     {
-        "inputs": [],
-        "name": "constructor",
-        "outputs": [],
-        "type": "constructor"
-    },
-    {
         "inputs": [
             {
                 "name": "i",
-                "type": "felt"
-            },
-            {
-                "name": "j",
                 "type": "felt"
             }
         ],
@@ -27,60 +17,9 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "view_game_number",
-        "outputs": [
-            {
-                "name": "num",
-                "type": "felt"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "view_last_winner",
-        "outputs": [
-            {
-                "name": "winner",
-                "type": "felt"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "get_state_hash",
-        "outputs": [
-            {
-                "name": "hash",
-                "type": "felt"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "reset_board",
-        "outputs": [
-            {
-                "name": "success",
-                "type": "felt"
-            }
-        ],
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "name": "i",
-                "type": "felt"
-            },
-            {
-                "name": "j",
                 "type": "felt"
             },
             {
@@ -89,122 +28,6 @@
             }
         ],
         "name": "write_board",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "write_winner",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "i",
-                "type": "felt"
-            },
-            {
-                "name": "j",
-                "type": "felt"
-            },
-            {
-                "name": "value",
-                "type": "felt"
-            }
-        ],
-        "name": "write_board_copy",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "i",
-                "type": "felt"
-            },
-            {
-                "name": "j",
-                "type": "felt"
-            }
-        ],
-        "name": "view_board_copy",
-        "outputs": [
-            {
-                "name": "value",
-                "type": "felt"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "k",
-                "type": "felt"
-            },
-            {
-                "name": "i",
-                "type": "felt"
-            },
-            {
-                "name": "j",
-                "type": "felt"
-            }
-        ],
-        "name": "view_possible_next_boards",
-        "outputs": [
-            {
-                "name": "res",
-                "type": "felt"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "k",
-                "type": "felt"
-            },
-            {
-                "name": "i",
-                "type": "felt"
-            },
-            {
-                "name": "j",
-                "type": "felt"
-            },
-            {
-                "name": "value",
-                "type": "felt"
-            }
-        ],
-        "name": "write_possible_next_boards",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "k",
-                "type": "felt"
-            }
-        ],
-        "name": "create_board_copy",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "params",
-                "type": "felt"
-            }
-        ],
-        "name": "choose_next_action",
         "outputs": [],
         "type": "function"
     }

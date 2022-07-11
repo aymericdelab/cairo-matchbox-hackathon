@@ -1,0 +1,2 @@
+0x04e26d294ebb2a41096529a3b390dbb9e99321e11cc0b8e35376ccbdb421be41:artifacts/abis/board.json:board
+0x06ec6b93ba226d03a959303d99dd0c8d8c2f061d245e16bf6db613fba9ccea0f:artifacts/abis/state_hash_value.json:state_hash_value
